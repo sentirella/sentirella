@@ -1,0 +1,15 @@
+{
+  "name": "sentirella-roadmap-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Script de sincronizacion idempotente entre .github/roadmap/sentirella-kanban.yaml y el GitHub Project/Issues de sentirella/sentirella. Ver .github/ROADMAP.md.",
+  "type": "module",
+  "scripts": {
+    "sync:dry-run": "node sync-project.mjs --dry-run",
+    "sync:live": "node sync-project.mjs --live"
+  },
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "js-yaml": "^5.2.2"
+  }
+}
