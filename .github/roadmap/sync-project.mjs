@@ -390,6 +390,13 @@ function liveAddToProject(owner, number, issueUrl, report, id) {
     report.errors.push(`add to project ${id}: ${err.message}`);
   }
 }
+function existingProjectFieldValue(projectItem, fieldName) {
+  const target = fieldName.toLowerCase();
+  for (const [key, value] of Object.entries(projectItem || {})) {
+    if (key.toLowerCase() === target) return value;
+  }
+  return undefined;
+}
 function liveAddSubIssue(parentIssueNodeId, childIssueNodeId, report, label) {
   try {
     ghGraphQL(`mutation($issueId:ID!,$subIssueId:ID!){ addSubIssue(input:{issueId:$issueId,subIssueId:$subIssueId}){ issue { id } } }`,
@@ -613,6 +620,7 @@ function main() {
       for (const [manifestKey, fieldName] of SINGLE_SELECT_FIELD_MAP) {
         const value = item[manifestKey];
         if (value === null || value === undefined) continue;
+        if (String(existingProjectFieldValue(freshProjectItems.find((it) => it.id === projectItemId), fieldName) || '') === String(value)) continue;
         const field = fieldsByName.get(fieldName);
         if (!field) { report.errors.push(`field values ${item.id}.${fieldName}: field not found`); continue; }
         const optionId = field.optionsByName.get(value);
@@ -622,6 +630,7 @@ function main() {
       for (const [manifestKey, fieldName] of TEXT_FIELD_MAP) {
         const value = item[manifestKey];
         if (value === null || value === undefined) continue;
+        if (String(existingProjectFieldValue(freshProjectItems.find((it) => it.id === projectItemId), fieldName) || '') === String(value)) continue;
         const field = fieldsByName.get(fieldName);
         if (!field) { report.errors.push(`field values ${item.id}.${fieldName}: field not found`); continue; }
         liveSetFieldValue(projectInfo.id, projectItemId, field.id, 'text', String(value), report, `${item.id}.${fieldName}=${value}`);
@@ -629,6 +638,7 @@ function main() {
       for (const [manifestKey, fieldName] of NUMBER_FIELD_MAP) {
         const value = item[manifestKey];
         if (value === null || value === undefined) continue;
+        if (Number(existingProjectFieldValue(freshProjectItems.find((it) => it.id === projectItemId), fieldName)) === Number(value)) continue;
         const field = fieldsByName.get(fieldName);
         if (!field) { report.errors.push(`field values ${item.id}.${fieldName}: field not found`); continue; }
         liveSetFieldValue(projectInfo.id, projectItemId, field.id, 'number', Number(value), report, `${item.id}.${fieldName}=${value}`);
