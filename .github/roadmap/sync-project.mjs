@@ -316,6 +316,11 @@ function liveEnsureFields(projectNodeId, manifest, existingFields, report) {
   }
   const statusField = byName.get(manifest.fields.status_field.name);
   if (statusField) {
+    const currentOptions = (statusField.options || []).map((o) => o.name);
+    const expectedOptions = manifest.fields.status_field.options;
+    if (JSON.stringify(currentOptions) === JSON.stringify(expectedOptions)) {
+      report.fieldsReused.push('Status');
+    } else {
     try {
       const query = `mutation($fieldId:ID!,$options:[ProjectV2SingleSelectFieldOptionInput!]) {
         updateProjectV2Field(input:{fieldId:$fieldId,singleSelectOptions:$options}) {
@@ -326,6 +331,7 @@ function liveEnsureFields(projectNodeId, manifest, existingFields, report) {
       report.fieldsRedefined.push('Status');
     } catch (err) {
       report.errors.push(`redefine Status options: ${err.message}`);
+    }
     }
   } else {
     report.errors.push('Status field not found -- cannot redefine its options.');
@@ -351,6 +357,10 @@ function liveCreateOrUpdateIssue(repoFull, item, existingIssuesById, report) {
   const labels = item.labels || [];
   const existing = existingIssuesById.get(item.id);
   if (existing) {
+    if (existing.title === item.title && existing.body === bodyText) {
+      report.issuesUpdated.push(`${item.id} (unchanged)`);
+      return existing;
+    }
     try {
       gh(['issue', 'edit', String(existing.number), '--repo', repoFull, '--body', bodyText, '--title', item.title]);
       report.issuesUpdated.push(item.id);
@@ -575,8 +585,11 @@ function main() {
     }
     console.log(`Issues done (${report.issuesCreated.length} created, ${report.issuesUpdated.length} updated).`);
 
+    const existingProjectUrls = new Set(existingProjectItems.map((it) => it.content && it.content.url).filter(Boolean));
     for (const [id, issue] of resultByIssueId) {
-      if (issue.url) liveAddToProject(manifest._meta.project_owner, manifest._meta.project_number, issue.url, report, id);
+      if (issue.url && !existingProjectUrls.has(issue.url)) {
+        liveAddToProject(manifest._meta.project_owner, manifest._meta.project_number, issue.url, report, id);
+      }
     }
     console.log(`Project items done (${report.projectItemsAdded.length} added).`);
 
