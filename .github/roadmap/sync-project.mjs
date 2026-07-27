@@ -341,6 +341,10 @@ function liveEnsureFields(projectNodeId, manifest, existingFields, report) {
     if (f.action === 'reuse_as_is') { report.fieldsReused.push(f.name); continue; }
     if (f.action === 'rename') {
       const existing = byName.get(f.name);
+      if (!existing && byName.has(f.rename_to)) {
+        report.fieldsReused.push(f.rename_to);
+        continue;
+      }
       if (!existing) { report.errors.push(`rename field ${f.name}: not found`); continue; }
       try {
         ghGraphQL(`mutation($fieldId:ID!,$name:String!){ updateProjectV2Field(input:{fieldId:$fieldId,name:$name}){ projectV2Field { ... on ProjectV2Field { id name } } } }`,
