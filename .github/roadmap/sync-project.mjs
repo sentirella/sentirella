@@ -154,7 +154,7 @@ function getProjectInfo(owner, number) {
   return ghJSON(['project', 'view', String(number), '--owner', owner, '--format', 'json'], { allowFail: true });
 }
 function getExistingIssues(repoFull) {
-  const out = ghJSON(['issue', 'list', '--repo', repoFull, '--state', 'all', '--json', 'number,title,body,url,state', '--limit', '500'], { allowFail: true });
+  const out = ghJSON(['issue', 'list', '--repo', repoFull, '--state', 'all', '--json', 'number,title,body,url,state,labels', '--limit', '500'], { allowFail: true });
   const map = new Map();
   for (const issue of out || []) {
     const id = extractId(issue.body, issue.title);
@@ -358,19 +358,28 @@ function liveEnsureFields(projectNodeId, manifest, existingFields, report) {
     }
   }
 }
-function liveCreateOrUpdateIssue(repoFull, item, existingIssuesById, report) {
+function liveCreateOrUpdateIssue(repoFull, item, existingIssuesById, managedLabelNames, report) {
   const bodyText = item.body; // already deterministically rendered in the manifest
   const labels = item.labels || [];
   const existing = existingIssuesById.get(item.id);
   if (existing) {
-    if (existing.title === item.title && existing.body === bodyText) {
+    const currentLabels = new Set((existing.labels || []).map((label) => typeof label === 'string' ? label : label.name));
+    const desiredLabels = new Set(labels);
+    const labelsToAdd = labels.filter((label) => !currentLabels.has(label));
+    const labelsToRemove = [...currentLabels].filter((label) => managedLabelNames.has(label) && !desiredLabels.has(label));
+    const contentChanged = existing.title !== item.title || existing.body !== bodyText;
+    if (!contentChanged && labelsToAdd.length === 0 && labelsToRemove.length === 0) {
       report.issuesUpdated.push(`${item.id} (unchanged)`);
       return existing;
     }
     try {
-      gh(['issue', 'edit', String(existing.number), '--repo', repoFull, '--body', bodyText, '--title', item.title]);
+      const args = ['issue', 'edit', String(existing.number), '--repo', repoFull];
+      if (contentChanged) args.push('--body', bodyText, '--title', item.title);
+      for (const label of labelsToAdd) args.push('--add-label', label);
+      for (const label of labelsToRemove) args.push('--remove-label', label);
+      gh(args);
       report.issuesUpdated.push(item.id);
-      return existing;
+      return { ...existing, title: item.title, body: bodyText, labels: labels.map((name) => ({ name })) };
     } catch (err) {
       report.errors.push(`update issue ${item.id}: ${err.message}`);
       return existing;
@@ -618,7 +627,13 @@ function main() {
     const items = allManifestItems(manifest);
     const resultByIssueId = new Map();
     for (const item of items) {
-      const result = liveCreateOrUpdateIssue(repoFull, item, existingIssuesById, report);
+      const result = liveCreateOrUpdateIssue(
+        repoFull,
+        item,
+        existingIssuesById,
+        new Set(manifest.labels.map((label) => label.name)),
+        report,
+      );
       if (result) resultByIssueId.set(item.id, result);
     }
     console.log(`Issues done (${report.issuesCreated.length} created, ${report.issuesUpdated.length} updated).`);
