@@ -671,7 +671,7 @@ epics:
 
       - [ ] `H3-01` — Create a provider-neutral email abstraction
       - [ ] `H3-02` — Add administrative SMTP configuration
-      - [ ] `H3-03` — Configure the installation domain and public URL
+      - [ ] `H3-03` — Research canonical service identity and URL requirements
       - [ ] `H3-04` — Store email credentials securely
       - [ ] `H3-05` — Add email delivery test and diagnostics
       - [ ] `H3-06` — Create configurable system email templates
@@ -1521,7 +1521,7 @@ epics:
       - [ ] `PR7-01` — Update the landing page to reflect the AGPL release
       - [ ] `PR7-02` — Create a no-email installation guide
       - [ ] `PR7-03` — Create a custom SMTP installation guide
-      - [ ] `PR7-04` — Create a domain and certificate guide
+      - [ ] `PR7-04` — Document approved service naming and certificate profiles
       - [ ] `PR7-05` — Create a self-hosted coordination server guide
       - [ ] `PR7-06` — Create a relay deployment guide
       - [ ] `PR7-07` — Create a relay pool configuration guide
@@ -4645,7 +4645,7 @@ issues:
       ## Related work
 
       - `H4-04` — Support multiple publication topologies
-      - `H4-15` — Allow selection of connectivity infrastructure
+      - `H4-15` — Define operator-controlled relay configuration
       - `PR7-08` — Document infrastructure profiles
 
       ## Tests
@@ -5438,7 +5438,7 @@ issues:
       - `H2-01` — Define the account creation and recovery matrix
       - `H3-01` — Create a provider-neutral email abstraction
       - `H3-02` — Add administrative SMTP configuration
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
       - `H3-04` — Store email credentials securely
       - `H3-05` — Add email delivery test and diagnostics
       - `H3-06` — Create configurable system email templates
@@ -5623,7 +5623,7 @@ issues:
       - `H2-01` — Define the account creation and recovery matrix
       - `H3-01` — Create a provider-neutral email abstraction
       - `H3-02` — Add administrative SMTP configuration
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
       - `H3-04` — Store email credentials securely
       - `H3-05` — Add email delivery test and diagnostics
       - `H3-06` — Create configurable system email templates
@@ -6075,7 +6075,7 @@ issues:
 
       ## Related work
 
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
       - `H3-04` — Store email credentials securely
       - `H3-05` — Add email delivery test and diagnostics
 
@@ -6159,8 +6159,8 @@ issues:
 
       ## Related work
 
-      - `H4-03` — Support custom domains and certificates
-      - `PR7-04` — Create a domain and certificate guide
+      - `H4-03` — Research service naming and transport-security requirements
+      - `PR7-04` — Document approved service naming and certificate profiles
 
       ## Tests
 
@@ -6410,7 +6410,7 @@ issues:
       ## Dependencies
 
       - `H3-01` — Create a provider-neutral email abstraction
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
 
       ## Related work
 
@@ -6496,12 +6496,12 @@ issues:
       ## Dependencies
 
       - `H3-02` — Add administrative SMTP configuration
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
 
       ## Related work
 
       - `PR7-03` — Create a custom SMTP installation guide
-      - `PR7-04` — Create a domain and certificate guide
+      - `PR7-04` — Document approved service naming and certificate profiles
 
       ## Tests
 
@@ -6840,11 +6840,11 @@ issues:
       ## Dependencies
 
       - `H4-02` — Create a provider-neutral public access configuration
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
 
       ## Related work
 
-      - `PR7-04` — Create a domain and certificate guide
+      - `PR7-04` — Document approved service naming and certificate profiles
 
       ## Tests
 
@@ -7273,7 +7273,7 @@ issues:
       ## Dependencies
 
       - `H4-02` — Create a provider-neutral public access configuration
-      - `H4-03` — Support custom domains and certificates
+      - `H4-03` — Research service naming and transport-security requirements
       - `H4-04` — Support multiple publication topologies
 
       ## Related work
@@ -7442,7 +7442,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H6-01` — Define secure direct-connectivity research requirements
       - `H5-01` — Create the Sentirella threat model
       - `H5-02` — Define security and privacy requirements
 
@@ -7620,7 +7620,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H6-01` — Define secure direct-connectivity research requirements
       - `H5-02` — Define security and privacy requirements
 
       ## Related work
@@ -7880,7 +7880,7 @@ issues:
 
       ## Related work
 
-      - `H4-15` — Allow selection of connectivity infrastructure
+      - `H4-15` — Define operator-controlled relay configuration
       - `PR2-06` — Recover transfers after connectivity interruption
 
       ## Tests
@@ -8185,6 +8185,7 @@ issues:
 
 
 
+
     body: |
       <!-- sentirella-roadmap-key: H6-03 -->
       **Roadmap ID:** `T079`  
@@ -8323,7 +8324,7 @@ issues:
 
       ## Related work
 
-      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H6-01` — Define secure direct-connectivity research requirements
       - `H5-14` — Validate that relays cannot read or undetectably alter content
       - `PR8-02` — Prepare architecture, threat-model and test material for audit
 
@@ -9136,7 +9137,7 @@ issues:
 
       ## Related work
 
-      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H6-01` — Define secure direct-connectivity research requirements
       - `H4-13` — Design a relay pool and directory
       - `H5-14` — Validate that relays cannot read or undetectably alter content
 
@@ -9956,6 +9957,7 @@ issues:
       - PR2-03
       - PR2-04
     related_work: []
+
 
 
 
@@ -12012,9 +12014,9 @@ issues:
 
       ## Dependencies
 
-      - `H3-03` — Configure the installation domain and public URL
+      - `H3-03` — Research canonical service identity and URL requirements
       - `H4-02` — Create a provider-neutral public access configuration
-      - `H4-03` — Support custom domains and certificates
+      - `H4-03` — Research service naming and transport-security requirements
       - `H4-04` — Support multiple publication topologies
 
       ## Related work
@@ -12269,7 +12271,7 @@ issues:
 
       - `H4-13` — Design a relay pool and directory
       - `H4-14` — Evaluate relay-selection models
-      - `H4-15` — Allow selection of connectivity infrastructure
+      - `H4-15` — Define operator-controlled relay configuration
 
       ## Related work
 
@@ -12354,7 +12356,7 @@ issues:
 
       - `H1-03` — Define supported deployment profiles
       - `H4-04` — Support multiple publication topologies
-      - `H4-15` — Allow selection of connectivity infrastructure
+      - `H4-15` — Define operator-controlled relay configuration
 
       ## Related work
 
@@ -12612,7 +12614,7 @@ issues:
 
       - `PR7-02` — Create a no-email installation guide
       - `PR7-03` — Create a custom SMTP installation guide
-      - `PR7-04` — Create a domain and certificate guide
+      - `PR7-04` — Document approved service naming and certificate profiles
       - `PR7-05` — Create a self-hosted coordination server guide
       - `PR7-06` — Create a relay deployment guide
       - `PR7-07` — Create a relay pool configuration guide
