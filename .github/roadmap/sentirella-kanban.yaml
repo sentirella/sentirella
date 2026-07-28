@@ -623,7 +623,7 @@ epics:
     roadmap_id: E05
     epic_sequence: 5
     chronological_order: 57
-    title: '[E05] Configurable email and domain'
+    title: '[E05] Configurable email and service identity'
     status: Ready
     roadmap: Open Source & Self-Hosting
     type: Epic
@@ -657,7 +657,7 @@ epics:
 
       ## Objective
 
-      Allow each installation to use its own SMTP infrastructure or operate with email completely disabled.
+      Research and implement provider-neutral email configuration and define how each approved deployment profile identifies its canonical service endpoints.
 
       ## Scope
 
@@ -723,7 +723,7 @@ epics:
     labels:
       - type:epic
       - open-source
-      - area:infrastructure
+      - area:relays
     children:
       - H4-01
       - H4-02
@@ -737,6 +737,9 @@ epics:
       - H4-10
       - H4-11
       - H4-12
+      - H4-13
+      - H4-14
+      - H4-15
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: EPIC-H4 -->
@@ -749,7 +752,7 @@ epics:
 
       ## Objective
 
-      Provide configurable public connectivity and a relay that can be deployed, operated and maintained independently of a mandatory infrastructure provider.
+      Provide configurable public connectivity and investigate relay infrastructure that can be deployed, operated and maintained independently of a mandatory infrastructure provider.
 
       ## Scope
 
@@ -762,22 +765,29 @@ epics:
       ## Planned work
 
       - [ ] `H4-01` — Inventory and remove Cloudflare coupling
-      - [ ] `H4-02` — Create a provider-neutral public access configuration
-      - [ ] `H4-03` — Support custom domains and certificates
-      - [ ] `H4-04` — Support multiple publication topologies
+      - [ ] `H4-02` — Create provider-neutral public-access configuration
+      - [ ] `H4-03` — Research service naming and transport-security requirements
+      - [ ] `H4-04` — Evaluate provider-independent publication topologies
       - [ ] `H4-05` — Separate remote access from perimeter protection
-      - [ ] `H4-06` — Apply real-time channel rate limits
-      - [ ] `H4-07` — Detect abuse and apply temporary blocking
-      - [ ] `H4-08` — Validate a complete deployment without Cloudflare
+      - [ ] `H4-06` — Define real-time limits and capacity controls
+      - [ ] `H4-07` — Implement temporary abuse blocking
+      - [ ] `H4-08` — Validate an independently operated deployment profile
+      - [ ] `H4-09` — Prototype an independently operable relay transfer path
+      - [ ] `H4-10` — Define the relay interface and behaviour
+      - [ ] `H4-11` — Create a self-hostable relay package
+      - [ ] `H4-12` — Implement relay abuse controls
+      - [ ] `H4-13` — Evaluate and prototype relay discovery models
+      - [ ] `H4-14` — Evaluate relay-selection models
+      - [ ] `H4-15` — Define operator-controlled relay configuration
 
       ## Acceptance criteria
 
-      - [ ] Cloudflare coupling is inventoried and removed from mandatory runtime assumptions.
-      - [ ] Public access configuration is provider-neutral.
-      - [ ] Custom domains, certificates and multiple publication topologies are supported.
-      - [ ] Remote access and perimeter protection responsibilities are documented.
-      - [ ] Real-time channel abuse protections are implemented.
-      - [ ] A complete deployment without Cloudflare passes validation.
+      - [ ] Mandatory provider coupling is documented and removed from the approved deployment path.
+      - [ ] Publication and service-identity requirements are decided from reproducible research.
+      - [ ] At least one independently operable publication profile is validated.
+      - [ ] Relay interfaces, operational boundaries and abuse controls are documented.
+      - [ ] A compatible relay can be packaged and operated independently.
+      - [ ] Relay discovery, selection and configuration models are evaluated without presupposing their relationship to other connectivity research.
 
       ## Dependencies
 
@@ -815,7 +825,7 @@ epics:
     labels:
       - type:epic
       - open-source
-      - area:connectivity
+      - area:security
     children:
       - H5-01
       - H5-02
@@ -855,27 +865,29 @@ epics:
 
       ## Planned work
 
-      - [ ] `H6-01` — Define direct-connectivity and secure-retransmission requirements
-      - [ ] `H6-02` — Prototype direct device-to-device connectivity
-      - [ ] `H4-09` — Prototype a secure relay fallback route
-      - [ ] `H4-10` — Define the relay interface and behaviour
-      - [ ] `H4-11` — Create a self-hostable relay package
-      - [ ] `H6-03` — Design a relay pool and directory
-      - [ ] `H6-04` — Select an available relay automatically
-      - [ ] `H6-05` — Allow selection of connectivity infrastructure
-      - [ ] `H4-12` — Implement relay abuse controls
+      - [ ] `H5-01` — Create the Sentirella threat model
+      - [ ] `H5-02` — Define security and privacy requirements
+      - [ ] `H5-03` — Evaluate maintained cryptographic standards and libraries
+      - [ ] `H5-04` — Create comparative cryptographic prototypes
+      - [ ] `H5-05` — Document the cryptographic selection
+      - [ ] `H5-06` — Define and validate key-lifecycle requirements
+      - [ ] `H5-07` — Manage participant addition and revocation
+      - [ ] `H5-08` — Manage lost, replaced and revoked devices
+      - [ ] `H5-09` — Protect transfer confidentiality and integrity
+      - [ ] `H5-10` — Analyse metadata exposure
+      - [ ] `H5-11` — Validate security controls against the threat model
+      - [ ] `H5-12` — Prepare the project for an external security audit
+      - [ ] `H5-13` — Publish a security policy and vulnerability-reporting process
       - [ ] `H5-14` — Validate that relays cannot read or undetectably alter content
-      - [ ] `H6-06` — Create a connectivity and relay test suite
 
       ## Acceptance criteria
 
-      - [ ] Implementation-neutral connectivity requirements are approved.
-      - [ ] Direct and relay prototypes are validated.
-      - [ ] A self-hostable relay package exists.
-      - [ ] Public, alternative and private relay pools are supported.
-      - [ ] Automatic relay selection and infrastructure choice work.
-      - [ ] Abuse controls and connectivity tests pass.
-      - [ ] Relay operators cannot interpret file contents or alter them without detection.
+      - [ ] The threat model and security requirements are approved.
+      - [ ] Candidate standards and libraries are compared with reproducible evidence.
+      - [ ] The selected approach and key-lifecycle requirements are documented.
+      - [ ] Confidentiality, integrity, revocation and metadata properties are validated.
+      - [ ] Relay infrastructure cannot read protected content or alter it without detection.
+      - [ ] Security validation, audit preparation and vulnerability reporting are complete.
 
       ## Dependencies
 
@@ -901,7 +913,7 @@ epics:
     roadmap_id: E08
     epic_sequence: 8
     chronological_order: 87
-    title: '[E08] Distributed direct connectivity'
+    title: '[E08] Research secure direct connectivity'
     status: Needs definition
     roadmap: Shared
     type: Epic
@@ -914,14 +926,11 @@ epics:
       - open-source
       - type:epic
       - roadmap:shared
-      - area:security
+      - area:connectivity
     children:
       - H6-01
       - H6-02
       - H6-03
-      - H6-04
-      - H6-05
-      - H6-06
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: EPIC-H6 -->
@@ -934,7 +943,7 @@ epics:
 
       ## Objective
 
-      Research and validate direct browser-to-owner connectivity with automatic fallback to compatible private, shared or community-operated relay infrastructure.
+      Research and validate mechanisms compatible with browsers for protected direct communication between an authorised browser and the computer that retains the files, without presupposing a final technology or topology.
 
       ## Scope
 
@@ -946,29 +955,17 @@ epics:
 
       ## Planned work
 
-      - [ ] `H5-01` — Create the Sentirella threat model
-      - [ ] `H5-02` — Define security and privacy requirements
-      - [ ] `H5-03` — Evaluate maintained cryptographic standards and libraries
-      - [ ] `H5-04` — Create comparative cryptographic prototypes
-      - [ ] `H5-05` — Document the cryptographic selection
-      - [ ] `H5-06` — Design the key lifecycle
-      - [ ] `H5-07` — Manage participant addition and revocation
-      - [ ] `H5-08` — Manage lost, replaced and revoked devices
-      - [ ] `H5-09` — Protect transfer confidentiality and integrity
-      - [ ] `H5-10` — Analyse metadata exposure
-      - [ ] `H5-11` — Create an automated security test suite
-      - [ ] `H5-12` — Prepare the project for an external security audit
-      - [ ] `H5-13` — Publish a security policy and vulnerability-reporting process
+      - [ ] `H6-01` — Define secure direct-connectivity research requirements
+      - [ ] `H6-02` — Prototype direct device-to-device connectivity
+      - [ ] `H6-03` — Define a minimum direct-connectivity validation matrix
 
       ## Acceptance criteria
 
-      - [ ] The threat model and security requirements are approved.
-      - [ ] Candidate standards and libraries are compared with evidence.
-      - [ ] The selected approach and key lifecycle are documented.
-      - [ ] Participant and device revocation are implemented.
-      - [ ] Transfer confidentiality and integrity are enforced.
-      - [ ] Metadata exposure is documented.
-      - [ ] The security test suite, audit preparation and vulnerability-reporting process are complete.
+      - [ ] Security, privacy, interoperability and compatibility requirements are approved.
+      - [ ] Maintained alternatives are compared without selecting a technology in advance.
+      - [ ] Representative prototypes are reproducible.
+      - [ ] The validation matrix records evidence, limitations and residual risks.
+      - [ ] The resulting architecture is documented only after the research decision is accepted.
 
       ## Dependencies
 
@@ -1114,7 +1111,7 @@ epics:
       - [ ] `PR2-03` — Resume interrupted transfers
       - [ ] `PR2-04` — Verify integrity after transfer resumption
       - [ ] `PR2-05` — Preserve transfer state across application restart
-      - [ ] `PR2-06` — Handle route changes between direct connection and relay
+      - [ ] `PR2-06` — Recover transfers after connectivity interruption
 
       ## Acceptance criteria
 
@@ -2046,7 +2043,7 @@ issues:
       ## Related work
 
       - `H2-05` — Support configurable email verification
-      - `EPIC-H3` — Configurable email and domain
+      - `EPIC-H3` — Configurable email and service identity
 
       ## Tests
 
@@ -4592,7 +4589,7 @@ issues:
     hard_dependencies: []
     related_work:
       - H4-04
-      - H6-05
+      - H4-15
       - PR7-08
     body: |
       <!-- sentirella-roadmap-key: H1-03 -->
@@ -4648,7 +4645,7 @@ issues:
       ## Related work
 
       - `H4-04` — Support multiple publication topologies
-      - `H6-05` — Allow selection of connectivity infrastructure
+      - `H4-15` — Allow selection of connectivity infrastructure
       - `PR7-08` — Document infrastructure profiles
 
       ## Tests
@@ -5092,7 +5089,7 @@ issues:
       ## Related work
 
       - `H1-03` — Define supported deployment profiles
-      - `EPIC-H3` — Configurable email and domain
+      - `EPIC-H3` — Configurable email and service identity
 
       ## Tests
 
@@ -6098,18 +6095,18 @@ issues:
     roadmap_id: T055
     sequence: 55
     chronological_order: 60
-    title: '[T055] Configure the installation domain and public URL'
+    title: '[T055] Research canonical service identity and URL requirements'
     parent_epic: EPIC-H3
-    status: Backlog
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Research
     area: Configuration
     phase: Open Source Scope
     open_source_milestone: H3
     priority_level: Critical
     risk: null
     labels:
-      - type:feature
+      - type:research
       - open-source
       - self-hosting
     hard_dependencies:
@@ -6124,11 +6121,11 @@ issues:
 
       ## Context
 
-      The current Sentirella prototype does not yet satisfy the result described in this Issue. This work belongs to the parent Epic listed in the roadmap manifest.
+      Different deployment profiles may require different forms of canonical service identity, addressing and trusted-link generation. Their requirements must be evaluated before a universal configuration model is approved.
 
       ## Objective
 
-      Allow each installation to define the domain and public URL used in verification, recovery and security links.
+      Research and define canonical service-identity and URL requirements for the approved deployment profiles without presupposing a universal naming or addressing model.
 
       ## Scope
 
@@ -6136,24 +6133,25 @@ issues:
 
       ## Out of scope
 
-      DNS operation, reverse-proxy deployment, certificate issuance and transport publication are handled by H4-03. This Issue only defines the canonical application URL used to generate trusted links.
+      DNS operation, proxy deployment, certificate issuance and transport publication are evaluated by H4-03 and H4-04. This Issue defines application-level identity and trusted-link requirements.
 
       ## Planned work
 
-      - [ ] Add a public base URL setting.
-      - [ ] Add an installation domain setting where it is distinct from the base URL.
-      - [ ] Validate scheme, host and path rules.
-      - [ ] Use the configured public URL when generating links.
-      - [ ] Prevent Host-header or request-origin values from silently replacing the approved public URL.
-      - [ ] Document reverse-proxy requirements.
+      - [ ] Identify application flows that require a canonical service identity or URL.
+      - [ ] Compare naming and addressing models across the approved deployment profiles.
+      - [ ] Define scheme, host, path and origin-validation requirements where applicable.
+      - [ ] Evaluate trusted-link generation for enabled identity and email policies.
+      - [ ] Define protections against unapproved Host-header or request-origin substitution.
+      - [ ] Record profile-specific limitations, operator responsibilities and open decisions.
+      - [ ] Publish a decision record before implementation is approved.
 
       ## Acceptance criteria
 
-      - [ ] Generated verification and recovery links use the configured public URL.
-      - [ ] Invalid or unsafe URL values are rejected.
-      - [ ] A request cannot cause links to use an unapproved host.
-      - [ ] The setting works with a self-hosted domain.
-      - [ ] The relationship between domain, public URL and email sender is documented.
+      - [ ] Deployment profiles and their service-identity requirements are compared.
+      - [ ] Canonical URL requirements are defined only where the evaluated profile needs them.
+      - [ ] Unsafe or ambiguous identity inputs are rejected by the proposed model.
+      - [ ] Trusted-link generation cannot be redirected to an unapproved endpoint.
+      - [ ] No naming, addressing or domain model is treated as universally selected before the decision is accepted.
 
       ## Dependencies
 
@@ -6780,18 +6778,18 @@ issues:
     roadmap_id: T063
     sequence: 63
     chronological_order: 69
-    title: '[T063] Support custom domains and certificates'
+    title: '[T063] Research service naming and transport-security requirements'
     parent_epic: EPIC-H4
-    status: Backlog
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Research
     area: Infrastructure
     phase: Open Source Scope
     open_source_milestone: H4
     priority_level: Critical
     risk: null
     labels:
-      - type:feature
+      - type:research
       - open-source
       - area:infrastructure
       - self-hosting
@@ -6807,11 +6805,11 @@ issues:
 
       ## Context
 
-      The current Sentirella prototype does not yet satisfy the result described in this Issue. This work belongs to the parent Epic listed in the roadmap manifest.
+      Publication and private deployment profiles can impose different naming, resolution and transport-security constraints. These constraints must be researched before implementation commitments are made.
 
       ## Objective
 
-      Allow a self-hosted installation to use its own domain and certificate-management approach.
+      Evaluate administrator-controlled service naming, addressing, resolution and transport-security requirements for each approved deployment profile.
 
       ## Scope
 
@@ -6819,24 +6817,25 @@ issues:
 
       ## Out of scope
 
-      Application-level canonical URL semantics and trusted-link generation are handled by H3-03. This Issue covers operational domain, proxy, TLS and publication concerns.
+      Application-level canonical identity and trusted-link semantics are handled by H3-03. This Issue evaluates operational naming, resolution, proxy, gateway and transport-security properties.
 
       ## Planned work
 
-      - [ ] Use the administrator-defined public domain.
-      - [ ] Support TLS termination at an approved reverse proxy or gateway.
-      - [ ] Support application-level certificate configuration only if required by the selected topology.
-      - [ ] Validate secure public URLs.
-      - [ ] Document renewal responsibility.
-      - [ ] Test with a non-Sentirella domain.
+      - [ ] Define evaluation criteria for service naming, addressing and resolution.
+      - [ ] Compare requirements across candidate public, private and test deployment profiles.
+      - [ ] Evaluate transport-security and trust-establishment requirements for each profile.
+      - [ ] Evaluate proxy, gateway and certificate-management responsibilities where applicable.
+      - [ ] Prototype representative configurations using non-production infrastructure.
+      - [ ] Record unsupported combinations, limitations and residual risks.
+      - [ ] Publish a decision record before implementation support is approved.
 
       ## Acceptance criteria
 
-      - [ ] A self-hosted installation operates through a custom domain.
-      - [ ] The documented topology uses valid TLS.
-      - [ ] Certificate renewal responsibility is explicit.
-      - [ ] No Sentirella-owned domain is required.
-      - [ ] The public URL remains consistent with H3-03.
+      - [ ] Candidate profiles are compared against documented security and operational criteria.
+      - [ ] Naming, resolution and transport-security requirements are explicit per evaluated profile.
+      - [ ] Domain, resolution and certificate requirements are documented for each accepted profile.
+      - [ ] No Sentirella-controlled naming service is mandatory in the evaluated model.
+      - [ ] No deployment profile is presented as already supported by this research task.
 
       ## Dependencies
 
@@ -6882,7 +6881,6 @@ issues:
     hard_dependencies:
       - H1-03
       - H4-02
-      - H4-03
     related_work:
       - PR7-08
     body: |
@@ -6927,7 +6925,6 @@ issues:
 
       - `H1-03` — Define supported deployment profiles
       - `H4-02` — Create a provider-neutral public access configuration
-      - `H4-03` — Support custom domains and certificates
 
       ## Related work
 
@@ -7022,7 +7019,7 @@ issues:
 
       - `H4-06` — Apply real-time channel rate limits
       - `H4-07` — Detect abuse and apply temporary blocking
-      - `EPIC-H5` — Direct connectivity and community-operated relay infrastructure
+      - `EPIC-H5` — Blind relay and end-to-end protection
 
       ## Tests
 
@@ -7300,7 +7297,7 @@ issues:
     roadmap_id: T069
     sequence: 69
     chronological_order: 76
-    title: '[T069] Define direct-connectivity and secure-retransmission requirements'
+    title: '[T069] Define secure direct-connectivity research requirements'
     parent_epic: EPIC-H6
     status: Needs definition
     roadmap: Open Source & Self-Hosting
@@ -7331,7 +7328,7 @@ issues:
 
       ## Objective
 
-      Define the implementation-neutral requirements for attempting direct device connections and using secure retransmission when direct connectivity is unavailable.
+      Define implementation-neutral requirements for researching protected direct communication between an authorised browser and the computer that retains the files.
 
       ## Scope
 
@@ -7343,31 +7340,21 @@ issues:
 
       ## Planned work
 
-      - [ ] Define which peers must attempt a direct connection.
-      - [ ] Define the coordination data required to attempt connectivity.
-      - [ ] Define how direct-connectivity failure is detected.
-      - [ ] Define when a relay route may be used.
-      - [ ] Define behaviour during network changes and reconnects.
-      - [ ] Define privacy requirements for coordination metadata.
+      - [ ] Define the authorised endpoints and protected assets.
+      - [ ] Define coordination data and trust boundaries that candidate approaches may require.
+      - [ ] Define browser, operating-system and network compatibility criteria.
+      - [ ] Define confidentiality, integrity, authentication and metadata requirements.
       - [ ] Define requirements for large and interrupted file transfers.
-      - [ ] Compare maintained standard approaches without naming a final implementation in public Issue titles or descriptions.
-      - [ ] Publish a comparison report and recommendation.
+      - [ ] Compare maintained standard approaches without selecting a final implementation.
+      - [ ] Publish a comparison report, limitations and recommendation.
 
       ## Acceptance criteria
 
-      - [ ] The direct and relayed connection requirements are complete.
-      - [ ] Failure detection and fallback conditions are explicit.
-      - [ ] Metadata, privacy and security constraints are documented.
-      - [ ] The report compares viable maintained approaches.
-      - [ ] No production implementation is approved until the report is accepted.
-      - [ ] H6-02, H4-09, H4-10 and H6-06 reference the result.
-      - [ ] The decision question is answered in a written decision record or comparison report.
-      - [ ] The evaluated alternatives are listed.
-      - [ ] The evaluation criteria and constraints are documented.
-      - [ ] Security, privacy, operational, and compatibility implications are documented where applicable.
-      - [ ] The selected direction, rejected alternatives, limitations, and remaining risks are recorded.
-      - [ ] Every dependent Issue is updated to reference the result.
-      - [ ] No production implementation is treated as approved before this record is accepted.
+      - [ ] Direct-connectivity research requirements are complete.
+      - [ ] Security, privacy, interoperability and compatibility constraints are documented.
+      - [ ] Viable maintained approaches are compared with reproducible evidence.
+      - [ ] No technology, topology or relationship to other connectivity mechanisms is approved before the report is accepted.
+      - [ ] H6-02 and H6-03 reference the accepted result.
 
       ## Dependencies
 
@@ -7479,7 +7466,7 @@ issues:
     roadmap_id: T071
     sequence: 71
     chronological_order: 78
-    title: '[T071] Prototype a secure relay fallback route'
+    title: '[T071] Prototype an independently operable relay transfer path'
     parent_epic: EPIC-H4
     status: Blocked
     roadmap: Open Source & Self-Hosting
@@ -7496,7 +7483,6 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H6-01
       - H5-01
       - H5-02
     related_work:
@@ -7512,7 +7498,7 @@ issues:
 
       ## Objective
 
-      Create a controlled relay prototype that carries a transfer only when a direct connection cannot be established.
+      Prototype and validate a relay-based transfer path as an independently researched connectivity mechanism, without defining its relationship to other connectivity approaches.
 
       ## Scope
 
@@ -7524,24 +7510,24 @@ issues:
 
       ## Planned work
 
-      - [ ] Implement relay fallback according to H6-01.
-      - [ ] Authenticate clients and relay access according to the prototype design.
-      - [ ] Carry an opaque test payload through the relay.
-      - [ ] Report relay selection, connection and failure states.
-      - [ ] Handle relay disconnect during a transfer attempt.
-      - [ ] Collect operational metrics without payload contents.
+      - [ ] Define the minimum coordination and relay responsibilities.
+      - [ ] Prototype session establishment using non-production infrastructure.
+      - [ ] Transfer representative protected content through the relay path.
+      - [ ] Validate interruption, recovery and integrity behaviour.
+      - [ ] Measure operational and capacity characteristics.
+      - [ ] Record trust boundaries, limitations and residual risks.
+      - [ ] Publish reproducible prototype evidence.
 
       ## Acceptance criteria
 
-      - [ ] A supported test scenario falls back to a relay after direct connection failure.
-      - [ ] The relay carries the test payload without needing to interpret it.
-      - [ ] Unauthorised clients cannot use the tested relay path.
-      - [ ] Relay failure is reported without corrupting local source data.
-      - [ ] The prototype limitations are documented.
+      - [ ] The relay transfer prototype is reproducible.
+      - [ ] Coordination and relay responsibilities are explicit.
+      - [ ] Representative transfers preserve required integrity properties.
+      - [ ] Interruption and recovery behaviour is documented.
+      - [ ] The task does not prescribe when or how this mechanism relates to direct-connectivity research.
 
       ## Dependencies
 
-      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
       - `H5-01` — Create the Sentirella threat model
       - `H5-02` — Define security and privacy requirements
 
@@ -7623,7 +7609,7 @@ issues:
       - [ ] The specification covers registration, authentication, capacity, limits, health, disconnection, privacy, integrity and compatibility.
       - [ ] The specification does not require a relay to understand file contents.
       - [ ] The specification permits independent relay implementations.
-      - [ ] H4-11, H6-03, H6-04 and H4-12 reference the approved specification.
+      - [ ] H4-11, H4-13, H4-14 and H4-12 reference the approved specification.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -7722,7 +7708,7 @@ issues:
 
       ## Dependencies
 
-      - `H4-09` — Prototype a secure relay fallback route
+      - `H4-09` — Prototype an independently operable relay transfer path
       - `H4-10` — Define the relay interface and behaviour
       - `H1-02` — Externalise configuration and secrets
 
@@ -7741,19 +7727,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-03
-    internal_key: H6-03
+  - id: H4-13
+    internal_key: H4-13
     roadmap_id: T074
     sequence: 74
     chronological_order: 81
     title: '[T074] Evaluate and prototype relay discovery models'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H4
     status: Needs definition
     roadmap: Open Source & Self-Hosting
     type: Research
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
@@ -7765,9 +7751,9 @@ issues:
       - H4-10
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-03 -->
+      <!-- sentirella-roadmap-key: H4-13 -->
       **Roadmap ID:** `T074`  
-      **Internal key:** `H6-03`
+      **Internal key:** `H4-13`
 
       ## Context
 
@@ -7822,36 +7808,36 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-04
-    internal_key: H6-04
+  - id: H4-14
+    internal_key: H4-14
     roadmap_id: T075
     sequence: 75
     chronological_order: 82
-    title: '[T075] Define and validate a relay-selection policy'
-    parent_epic: EPIC-H6
+    title: '[T075] Evaluate relay-selection models'
+    parent_epic: EPIC-H4
     status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Decision
+    type: Research
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
-      - type:feature
+      - type:research
       - open-source
       - area:relays
       - community-infrastructure
     hard_dependencies:
-      - H6-03
+      - H4-13
       - H4-11
     related_work:
-      - H6-05
+      - H4-15
       - PR2-06
     body: |
-      <!-- sentirella-roadmap-key: H6-04 -->
+      <!-- sentirella-roadmap-key: H4-14 -->
       **Roadmap ID:** `T075`  
-      **Internal key:** `H6-04`
+      **Internal key:** `H4-14`
 
       ## Context
 
@@ -7859,7 +7845,7 @@ issues:
 
       ## Objective
 
-      Define and validate an implementation-neutral policy for choosing a compatible relay when direct connectivity is unavailable.
+      Evaluate implementation-neutral models for choosing among compatible relay candidates without presupposing when relay infrastructure will be used.
 
       ## Scope
 
@@ -7871,32 +7857,31 @@ issues:
 
       ## Planned work
 
-      - [ ] Define mandatory compatibility and availability inputs.
-      - [ ] Evaluate capacity, latency, privacy and operator-policy trade-offs.
-      - [ ] Define bounded retry and failure behaviour.
-      - [ ] Define how private-relay and installation policies override defaults.
-      - [ ] Prototype the policy against representative relay candidates.
-      - [ ] Document diagnostics that avoid payload and sensitive-location disclosure.
+      - [ ] Define compatibility, availability and operator-policy criteria.
+      - [ ] Evaluate capacity, latency, privacy and trust trade-offs.
+      - [ ] Compare private, configured and discovered relay-selection models.
+      - [ ] Define bounded retry and failure behaviour within relay operation.
+      - [ ] Prototype representative models with non-production relays.
       - [ ] Record rejected strategies, limitations and residual risks.
+      - [ ] Publish a decision record before production implementation.
 
       ## Acceptance criteria
 
-      - [ ] Selection criteria and policy precedence are documented.
-      - [ ] Unhealthy and incompatible candidates are excluded.
-      - [ ] Retry and failure behaviour is bounded.
-      - [ ] Private and installation-specific policies are respected.
-      - [ ] A representative prototype validates the policy.
-      - [ ] Production implementation remains follow-up work until the decision is accepted.
+      - [ ] Multiple relay-selection models are compared against documented criteria.
+      - [ ] Operator policy and private infrastructure requirements are represented.
+      - [ ] Failure behaviour within the evaluated relay model is bounded.
+      - [ ] A representative prototype produces reproducible evidence.
+      - [ ] The task does not define a relationship between relay use and direct-connectivity research.
 
       ## Dependencies
 
-      - `H6-03` — Design a relay pool and directory
+      - `H4-13` — Design a relay pool and directory
       - `H4-11` — Create a self-hostable relay package
 
       ## Related work
 
-      - `H6-05` — Allow selection of connectivity infrastructure
-      - `PR2-06` — Handle route changes between direct connection and relay
+      - `H4-15` — Allow selection of connectivity infrastructure
+      - `PR2-06` — Recover transfers after connectivity interruption
 
       ## Tests
 
@@ -7909,35 +7894,37 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-05
-    internal_key: H6-05
+  - id: H4-15
+    internal_key: H4-15
     roadmap_id: T076
     sequence: 76
     chronological_order: 83
-    title: '[T076] Allow selection of connectivity infrastructure'
-    parent_epic: EPIC-H6
-    status: Backlog
+    title: '[T076] Define operator-controlled relay configuration'
+    parent_epic: EPIC-H4
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Decision
     area: Configuration
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
-      - type:feature
+      - type:decision
       - open-source
+      - area:relays
       - community-infrastructure
       - self-hosting
     hard_dependencies:
       - H1-03
-      - H6-03
+      - H4-13
+      - H4-14
     related_work:
       - PR7-08
     body: |
-      <!-- sentirella-roadmap-key: H6-05 -->
+      <!-- sentirella-roadmap-key: H4-15 -->
       **Roadmap ID:** `T076`  
-      **Internal key:** `H6-05`
+      **Internal key:** `H4-15`
 
       ## Context
 
@@ -7945,7 +7932,7 @@ issues:
 
       ## Objective
 
-      Allow an installation or user, within approved policy, to choose between Sentirella-operated, community, organisation-operated, private and direct-only connectivity options.
+      Define how an operator can configure approved private, organisation-operated, community or service-operated relay infrastructure after the relay research decisions are accepted.
 
       ## Scope
 
@@ -7957,27 +7944,27 @@ issues:
 
       ## Planned work
 
-      - [ ] Add configuration for Sentirella-operated relay infrastructure.
-      - [ ] Add configuration for a community or organisation relay pool.
-      - [ ] Add configuration for a private relay.
-      - [ ] Add a direct-only mode.
-      - [ ] Add a specific-relay option where approved.
-      - [ ] Define precedence between installation policy and user choice.
-      - [ ] Validate incompatible combinations.
-      - [ ] Explain privacy, availability and cost implications without making guarantees.
+      - [ ] Define supported relay-configuration sources and precedence.
+      - [ ] Define operator restrictions and validation rules.
+      - [ ] Define representation of private and organisation-operated infrastructure.
+      - [ ] Define safe diagnostics without exposing sensitive endpoints.
+      - [ ] Prototype the approved configuration model.
+      - [ ] Document privacy, availability, trust and cost implications.
+      - [ ] Record deferred options and residual risks.
 
       ## Acceptance criteria
 
-      - [ ] Every approved infrastructure option can be represented in configuration.
-      - [ ] Direct-only mode never silently falls back to a relay.
-      - [ ] Private-relay configuration does not require public directory registration.
-      - [ ] Installation policy can restrict available choices.
-      - [ ] The selected policy is visible and documented.
+      - [ ] Approved relay-infrastructure options can be represented.
+      - [ ] Operator policy controls the available relay configuration.
+      - [ ] Private infrastructure does not require public catalogue registration.
+      - [ ] Invalid or incompatible relay configuration is rejected.
+      - [ ] The task makes no claim about how relay infrastructure relates to direct-connectivity research.
 
       ## Dependencies
 
       - `H1-03` — Define supported deployment profiles
-      - `H6-03` — Design a relay pool and directory
+      - `H4-13` — Evaluate and prototype relay discovery models
+      - `H4-14` — Evaluate relay-selection models
 
       ## Related work
 
@@ -8151,7 +8138,7 @@ issues:
 
       ## Dependencies
 
-      - `H4-09` — Prototype a secure relay fallback route
+      - `H4-09` — Prototype an independently operable relay transfer path
       - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
@@ -8169,12 +8156,12 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-06
-    internal_key: H6-06
+  - id: H6-03
+    internal_key: H6-03
     roadmap_id: T079
     sequence: 79
     chronological_order: 86
-    title: '[T079] Define a minimum connectivity validation matrix'
+    title: '[T079] Define a minimum direct-connectivity validation matrix'
     parent_epic: EPIC-H6
     status: Backlog
     roadmap: Open Source & Self-Hosting
@@ -8188,22 +8175,20 @@ issues:
       - type:test
       - open-source
       - area:connectivity
-      - community-infrastructure
       - security-critical
     hard_dependencies:
       - H6-02
-      - H4-09
-      - H4-11
-      - H6-04
-      - H6-05
-      - H4-12
+      - H5-01
+      - H5-02
       - H5-09
-    related_work:
-      - PR2-06
+    related_work: []
+
+
+
     body: |
-      <!-- sentirella-roadmap-key: H6-06 -->
+      <!-- sentirella-roadmap-key: H6-03 -->
       **Roadmap ID:** `T079`  
-      **Internal key:** `H6-06`
+      **Internal key:** `H6-03`
 
       ## Context
 
@@ -8211,7 +8196,7 @@ issues:
 
       ## Objective
 
-      Define and execute a reproducible minimum validation matrix for direct connectivity, relay fallback and route recovery, with additional scenarios selected from documented risks.
+      Define and execute a reproducible minimum validation matrix for the direct-connectivity candidates selected for prototyping, with additional scenarios derived from documented risks.
 
       ## Scope
 
@@ -8223,37 +8208,33 @@ issues:
 
       ## Planned work
 
-      - [ ] Define the mandatory minimum network and failure scenarios.
-      - [ ] Map additional scenarios to the approved connectivity risks.
-      - [ ] Cover direct success, direct failure and relay fallback.
-      - [ ] Cover relay unavailability, interruption and route recovery.
-      - [ ] Include at least one independently operated relay configuration.
-      - [ ] Validate representative transfer sizes and integrity.
+      - [ ] Define mandatory browser, operating-system and network scenarios.
+      - [ ] Map additional scenarios to the approved threat model and connectivity risks.
+      - [ ] Validate establishment, interruption and recovery behaviour for each candidate.
+      - [ ] Validate representative transfer sizes, confidentiality and integrity.
       - [ ] Record whether each scenario is automated, simulated or manual.
-      - [ ] Document deferred scenarios and the reason for deferral.
+      - [ ] Document unsupported environments, deferred scenarios and residual risks.
+      - [ ] Publish reproducible results without production credentials.
 
       ## Acceptance criteria
 
-      - [ ] The mandatory minimum matrix is documented and reproducible.
-      - [ ] Direct success, fallback and relay failure are distinguishable.
-      - [ ] Transfer integrity is validated for representative sizes.
-      - [ ] Additional scenarios are selected from documented risks rather than an unlimited test promise.
-      - [ ] Results identify the environment and selected route without production credentials.
-      - [ ] Deferred scenarios and residual risks are explicit.
+      - [ ] The mandatory direct-connectivity matrix is documented and reproducible.
+      - [ ] Candidate success, interruption and recovery states are distinguishable.
+      - [ ] Transfer confidentiality and integrity are validated for representative sizes.
+      - [ ] Additional scenarios are selected from documented risks.
+      - [ ] Results identify the evaluated environment without exposing sensitive details.
+      - [ ] The task does not compare or combine direct connectivity with relay operation.
 
       ## Dependencies
 
       - `H6-02` — Prototype direct device-to-device connectivity
-      - `H4-09` — Prototype a secure relay fallback route
-      - `H4-11` — Create a self-hostable relay package
-      - `H6-04` — Select an available relay automatically
-      - `H6-05` — Allow selection of connectivity infrastructure
-      - `H4-12` — Implement relay abuse controls
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
       - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
 
-      - `PR2-06` — Handle route changes between direct connection and relay
+      - `PR2-06` — Recover transfers after connectivity interruption
 
       ## Tests
 
@@ -9099,7 +9080,7 @@ issues:
       - H5-02
     related_work:
       - H6-01
-      - H6-03
+      - H4-13
       - H5-14
     body: |
       <!-- sentirella-roadmap-key: H5-10 -->
@@ -9156,7 +9137,7 @@ issues:
       ## Related work
 
       - `H6-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H6-03` — Design a relay pool and directory
+      - `H4-13` — Design a relay pool and directory
       - `H5-14` — Validate that relays cannot read or undetectably alter content
 
       ## Tests
@@ -9603,7 +9584,7 @@ issues:
 
       - `PR2-03` — Resume interrupted transfers
       - `PR2-05` — Preserve transfer state across application restart
-      - `PR2-06` — Handle route changes between direct connection and relay
+      - `PR2-06` — Recover transfers after connectivity interruption
 
       ## Tests
 
@@ -9955,7 +9936,7 @@ issues:
     roadmap_id: T099
     sequence: 99
     chronological_order: 109
-    title: '[T099] Handle route changes between direct connection and relay'
+    title: '[T099] Recover transfers after connectivity interruption'
     parent_epic: EPIC-PR2
     status: Backlog
     roadmap: Shared
@@ -9971,14 +9952,13 @@ issues:
       - area:transfers
       - security-critical
     hard_dependencies:
-      - H6-02
-      - H4-09
-      - H6-04
       - H5-09
       - PR2-03
       - PR2-04
-    related_work:
-      - H6-06
+    related_work: []
+
+
+
     body: |
       <!-- sentirella-roadmap-key: PR2-06 -->
       **Roadmap ID:** `T099`  
@@ -9990,7 +9970,7 @@ issues:
 
       ## Objective
 
-      Allow an eligible transfer to recover when its connection route changes, without corrupting data or falsely completing the transfer.
+      Allow an eligible transfer to recover after an interruption in its approved connectivity mechanism without corrupting data or falsely completing.
 
       ## Scope
 
@@ -10002,34 +9982,30 @@ issues:
 
       ## Planned work
 
-      - [ ] Detect loss of the active route.
+      - [ ] Detect interruption of the active connectivity mechanism.
       - [ ] Return the transfer to a recoverable state.
-      - [ ] Attempt an approved alternative route according to connectivity policy.
-      - [ ] Reuse only verified transfer progress.
-      - [ ] Report the route change without exposing unnecessary network details.
-      - [ ] Apply the same confidentiality and integrity requirements to both routes.
-      - [ ] Test direct-to-relay, relay-to-direct where supported, and relay-to-relay recovery.
+      - [ ] Resume only through behaviour approved for that mechanism.
+      - [ ] Reuse only cryptographically verified transfer progress.
+      - [ ] Report recovery without exposing unnecessary network details.
+      - [ ] Test recovery for each connectivity mechanism approved by its own research line.
 
       ## Acceptance criteria
 
-      - [ ] A route failure does not corrupt the destination.
+      - [ ] An interruption does not corrupt the destination.
       - [ ] The transfer resumes only from verified progress.
       - [ ] The user sees a recoverable or failed state rather than false completion.
-      - [ ] Security guarantees remain equivalent after the route change.
-      - [ ] The behaviour follows H5 connectivity and relay policy.
+      - [ ] Security guarantees remain intact after recovery.
+      - [ ] The task does not presume switching between different connectivity mechanisms.
 
       ## Dependencies
 
-      - `H6-02` — Prototype direct device-to-device connectivity
-      - `H4-09` — Prototype a secure relay fallback route
-      - `H6-04` — Select an available relay automatically
       - `H5-09` — Protect transfer confidentiality and integrity
       - `PR2-03` — Resume interrupted transfers
       - `PR2-04` — Verify integrity after transfer resumption
 
       ## Related work
 
-      - `H6-06` — Create a connectivity and relay test suite
+      - `H6-03` — Create a connectivity and relay test suite
 
       ## Tests
 
@@ -11974,7 +11950,7 @@ issues:
     roadmap_id: T123
     sequence: 123
     chronological_order: 138
-    title: '[T123] Create a domain and certificate guide'
+    title: '[T123] Document approved service naming and certificate profiles'
     parent_epic: EPIC-PR7
     status: Backlog
     roadmap: Shared
@@ -12005,7 +11981,7 @@ issues:
 
       ## Objective
 
-      Document how a self-hosted installation configures its domain, public URL and TLS termination.
+      Document the service naming, resolution and certificate requirements selected for each approved deployment profile after H4-03 is accepted.
 
       ## Scope
 
@@ -12247,9 +12223,9 @@ issues:
       - roadmap:shared
       - area:docs
     hard_dependencies:
-      - H6-03
-      - H6-04
-      - H6-05
+      - H4-13
+      - H4-14
+      - H4-15
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR7-07 -->
@@ -12274,27 +12250,26 @@ issues:
 
       ## Planned work
 
-      - [ ] Document relay pool configuration.
-      - [ ] Document alternative directory endpoints.
-      - [ ] Document private relay configuration.
-      - [ ] Document direct-only mode.
+      - [ ] Document approved relay configuration sources.
+      - [ ] Document private and organisation-operated relay configuration.
+      - [ ] Document approved discovery and selection models.
       - [ ] Document relay health and compatibility behaviour.
-      - [ ] Document operator trust considerations.
-      - [ ] Document removal or replacement of unavailable relays.
+      - [ ] Document operator trust and privacy considerations.
+      - [ ] Document removal or replacement of unavailable relay infrastructure.
 
       ## Acceptance criteria
 
-      - [ ] Public, alternative and private relay configurations are covered.
-      - [ ] Direct-only mode is documented.
-      - [ ] The guide distinguishes a relay directory from a relay.
-      - [ ] Trust and privacy implications are stated.
-      - [ ] Examples contain no private production endpoint.
+      - [ ] Every approved relay-configuration model is covered.
+      - [ ] Private relay operation is documented without exposing production endpoints.
+      - [ ] The guide distinguishes discovery, selection, configuration and relay operation.
+      - [ ] Trust, privacy and operational implications are stated.
+      - [ ] The guide does not describe a relationship to direct-connectivity research.
 
       ## Dependencies
 
-      - `H6-03` — Design a relay pool and directory
-      - `H6-04` — Select an available relay automatically
-      - `H6-05` — Allow selection of connectivity infrastructure
+      - `H4-13` — Design a relay pool and directory
+      - `H4-14` — Evaluate relay-selection models
+      - `H4-15` — Allow selection of connectivity infrastructure
 
       ## Related work
 
@@ -12333,7 +12308,7 @@ issues:
     hard_dependencies:
       - H1-03
       - H4-04
-      - H6-05
+      - H4-15
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR7-08 -->
@@ -12372,14 +12347,14 @@ issues:
       - [ ] All three profiles are documented.
       - [ ] Operator responsibilities and trust boundaries are explicit.
       - [ ] The document does not imply that one provider is mandatory.
-      - [ ] Profile selection matches H1-03 and H6-05.
+      - [ ] Profile selection matches H1-03 and H4-15.
       - [ ] Known limitations are stated.
 
       ## Dependencies
 
       - `H1-03` — Define supported deployment profiles
       - `H4-04` — Support multiple publication topologies
-      - `H6-05` — Allow selection of connectivity infrastructure
+      - `H4-15` — Allow selection of connectivity infrastructure
 
       ## Related work
 
@@ -13126,7 +13101,7 @@ issues:
       - PR8-01
       - PR8-02
       - H5-14
-      - H6-06
+      - H6-03
       - H5-09
       - H5-10
       - H5-11
@@ -13177,7 +13152,7 @@ issues:
       - `PR8-01` — Define the scope of the external security audit
       - `PR8-02` — Prepare architecture, threat-model and test material for audit
       - `H5-14` — Validate that relays cannot read or undetectably alter content
-      - `H6-06` — Create a connectivity and relay test suite
+      - `H6-03` — Create a connectivity and relay test suite
       - `H5-09` — Protect transfer confidentiality and integrity
       - `H5-10` — Analyse metadata exposure
       - `H5-11` — Create an automated security test suite
@@ -13522,18 +13497,18 @@ parent_relationships:
     child: H4-10
   - parent: EPIC-H4
     child: H4-11
-  - parent: EPIC-H6
-    child: H6-03
-  - parent: EPIC-H6
-    child: H6-04
-  - parent: EPIC-H6
-    child: H6-05
+  - parent: EPIC-H4
+    child: H4-13
+  - parent: EPIC-H4
+    child: H4-14
+  - parent: EPIC-H4
+    child: H4-15
   - parent: EPIC-H4
     child: H4-12
   - parent: EPIC-H5
     child: H5-14
   - parent: EPIC-H6
-    child: H6-06
+    child: H6-03
   - parent: EPIC-H5
     child: H5-01
   - parent: EPIC-H5
@@ -13747,14 +13722,14 @@ dependencies:
     blocked: H3-01
   - blocking: H3-01
     blocked: H3-02
+  - blocking: H3-04
+    blocked: H3-02
   - blocking: H1-02
     blocked: H3-03
   - blocking: H1-02
     blocked: H3-04
   - blocking: H3-01
     blocked: H3-04
-  - blocking: H3-04
-    blocked: H3-02
   - blocking: H3-01
     blocked: H3-05
   - blocking: H3-02
@@ -13787,8 +13762,6 @@ dependencies:
     blocked: H4-04
   - blocking: H4-02
     blocked: H4-04
-  - blocking: H4-03
-    blocked: H4-04
   - blocking: H4-05
     blocked: H4-06
   - blocking: H4-06
@@ -13805,8 +13778,6 @@ dependencies:
     blocked: H6-02
   - blocking: H5-02
     blocked: H6-02
-  - blocking: H6-01
-    blocked: H4-09
   - blocking: H5-01
     blocked: H4-09
   - blocking: H5-02
@@ -13822,15 +13793,17 @@ dependencies:
   - blocking: H1-02
     blocked: H4-11
   - blocking: H4-10
-    blocked: H6-03
-  - blocking: H6-03
-    blocked: H6-04
+    blocked: H4-13
+  - blocking: H4-13
+    blocked: H4-14
   - blocking: H4-11
-    blocked: H6-04
+    blocked: H4-14
   - blocking: H1-03
-    blocked: H6-05
-  - blocking: H6-03
-    blocked: H6-05
+    blocked: H4-15
+  - blocking: H4-13
+    blocked: H4-15
+  - blocking: H4-14
+    blocked: H4-15
   - blocking: H4-10
     blocked: H4-12
   - blocking: H4-11
@@ -13840,19 +13813,13 @@ dependencies:
   - blocking: H5-09
     blocked: H5-14
   - blocking: H6-02
-    blocked: H6-06
-  - blocking: H4-09
-    blocked: H6-06
-  - blocking: H4-11
-    blocked: H6-06
-  - blocking: H6-04
-    blocked: H6-06
-  - blocking: H6-05
-    blocked: H6-06
-  - blocking: H4-12
-    blocked: H6-06
+    blocked: H6-03
+  - blocking: H5-01
+    blocked: H6-03
+  - blocking: H5-02
+    blocked: H6-03
   - blocking: H5-09
-    blocked: H6-06
+    blocked: H6-03
   - blocking: H5-01
     blocked: H5-02
   - blocking: H5-01
@@ -13927,12 +13894,6 @@ dependencies:
     blocked: PR2-05
   - blocking: PR2-04
     blocked: PR2-05
-  - blocking: H6-02
-    blocked: PR2-06
-  - blocking: H4-09
-    blocked: PR2-06
-  - blocking: H6-04
-    blocked: PR2-06
   - blocking: H5-09
     blocked: PR2-06
   - blocking: PR2-03
@@ -14039,17 +14000,17 @@ dependencies:
     blocked: PR7-06
   - blocking: H4-12
     blocked: PR7-06
-  - blocking: H6-03
+  - blocking: H4-13
     blocked: PR7-07
-  - blocking: H6-04
+  - blocking: H4-14
     blocked: PR7-07
-  - blocking: H6-05
+  - blocking: H4-15
     blocked: PR7-07
   - blocking: H1-03
     blocked: PR7-08
   - blocking: H4-04
     blocked: PR7-08
-  - blocking: H6-05
+  - blocking: H4-15
     blocked: PR7-08
   - blocking: H2-02
     blocked: PR7-09
@@ -14105,7 +14066,7 @@ dependencies:
     blocked: PR8-04
   - blocking: H5-14
     blocked: PR8-04
-  - blocking: H6-06
+  - blocking: H6-03
     blocked: PR8-04
   - blocking: H5-09
     blocked: PR8-04

@@ -51,10 +51,10 @@ Repository labels fall into four groups: `type:*` (nine, matching the `Type` fie
 |-----------|------|-----------|
 | **H1** | Open, reproducible and autonomous foundation | Allow a third party to deploy Sentirella without Sentirella-owned secrets, accounts, or mandatory external providers. |
 | **H2** | Configurable identity and registration | Allow Sentirella to operate without Google and let each installation choose how accounts are created, verified, and recovered. |
-| **H3** | Configurable email and domain | Allow each installation to use its own SMTP infrastructure or operate with email completely disabled. |
-| **H4** | Provider-independent connectivity and an operable relay | Decouple public access from any mandatory provider, validate an independently operable publication path, and establish the minimum relay capabilities needed for resilient connectivity. |
+| **H3** | Configurable email and service identity | Allow each installation to use its own SMTP infrastructure or operate with email disabled, and research canonical service-identity requirements across deployment profiles. |
+| **H4** | Provider-independent connectivity and an operable relay | Decouple public access from any mandatory provider and investigate independently operable relay infrastructure without presupposing its relationship to other connectivity research. |
 | **H5** | Blind relay and end-to-end protection | Define and validate a security model in which relays can transport protected content without reading or undetectably altering it. |
-| **H6** | Distributed direct connectivity | Evaluate and validate direct-first connectivity, automatic fallback, and independently operated relay options without committing prematurely to one implementation. |
+| **H6** | Secure direct-connectivity research | Evaluate protected direct communication between an authorised browser and the computer that retains the files without committing prematurely to a technology, topology, or relationship with other connectivity mechanisms. |
 
 
 ## Why provider-dependent capabilities stay recorded separately
@@ -65,21 +65,21 @@ Some capabilities that already work in production — Google sign-in, email veri
 
 Sentirella must be able to create and use accounts without collecting an email address at all (`H2-03`), and every installation must be able to choose its account-creation and recovery policy from an explicit matrix (`H2-01`): identifier-and-password accounts without email, email without verification, email with verification, open registration, restricted or invitation-only registration, and administrator-created accounts. Recovery is defined separately for accounts that have a usable email address (`H2-07`, which also carries the recovery user-experience requirements) and for accounts that have none (`H2-08`).
 
-## Provider-neutral SMTP, domain, and public URL configuration
+## Provider-neutral SMTP and service-identity research
 
-Email delivery is built behind a provider-neutral abstraction (`H3-01`) so the current provider is never required by the core. Each installation configures its own SMTP service (`H3-02`), its own domain and public URL (`H3-03`), and stores its credentials securely (`H3-04`). Sentirella must also be able to run with email completely disabled (`H3-08`) — this is validated explicitly, not assumed.
+Email delivery is built behind a provider-neutral abstraction (`H3-01`) so the current provider is never required by the core. Each installation can configure approved SMTP infrastructure (`H3-02`) and stores optional provider credentials according to an evaluated protection model (`H3-04`). The canonical service identity, URL, naming, addressing, and trusted-link requirements for each deployment profile are researched before implementation is approved (`H3-03`). Operation with email disabled remains a separate validation target (`H3-08`).
 
 ## Provider-independent connectivity and an operable relay
 
-The public access point is represented through provider-neutral configuration (`H4-02`), with support for custom domains and certificates (`H4-03`). Publication topologies are evaluated before support is committed (`H4-04`), and at least one independently operable path must be validated end to end (`H4-08`). The same milestone defines the minimum operable relay, including session handling, recovery, observability, and abuse boundaries. Remote access, perimeter protection, and DDoS protection remain separate concerns: Sentirella does not claim that application rate limits, a tunnel, or a relay resolve every attack on their own.
+Public-access configuration is represented through a provider-neutral interface (`H4-02`). Service naming, resolution, addressing, and transport-security requirements are evaluated per candidate deployment profile before support is committed (`H4-03` and `H4-04`). At least one independently operated profile must then be validated end to end (`H4-08`). The same milestone separately investigates an operable relay, including interfaces, sessions, recovery, observability, discovery, operator configuration, and abuse boundaries. The roadmap does not prescribe how relay research will relate to other connectivity mechanisms.
 
 ## Blind relay and end-to-end protection
 
 This milestone begins with an explicit threat model and security requirements. Maintained, publicly reviewed standards and libraries are compared and prototyped before any production choice is approved. The resulting design must protect confidentiality and integrity across relay-assisted transfers, define an auditable key lifecycle, minimise exposed metadata, and validate that a relay can transport protected content without reading or undetectably altering it. Public tasks describe required properties, evidence, and trust boundaries without publishing operational secrets or fixing an architecture before the research is complete.
 
-## Distributed direct connectivity
+## Secure direct-connectivity research
 
-Devices should prefer a direct connection where the validated environment permits it and use an alternative route when direct connectivity is unavailable. This milestone evaluates maintained connectivity approaches, defines failure detection and fallback behaviour, prototypes discovery and relay-selection policies, and validates a minimum matrix of supported scenarios. Compatible relay infrastructure may be privately or independently operated, but the roadmap does not promise a universal directory, a fixed selection algorithm, or support for every possible topology before those models have been evaluated.
+This milestone researches mechanisms compatible with browsers for protected direct communication between an authorised browser and the computer that retains the files. It defines security, privacy, interoperability, compatibility, and performance criteria; compares maintained alternatives; builds reproducible prototypes; and validates them against a minimum scenario matrix. It does not presuppose a technology, topology, or operational relationship with relay infrastructure. Any resulting architecture is documented only after the research decision is accepted.
 
 ## Avoiding duplicate work
 

@@ -10,7 +10,8 @@ The current demonstrator combines a desktop client, a web interface, and coordin
 - Make sharing explicitly controlled by the owner.
 - Support access from a conventional web browser without a recipient application.
 - Protect content and relevant metadata with end-to-end encryption.
-- Prefer direct device connectivity and fall back to blind relays when necessary.
+- Research protected direct device connectivity without presupposing a final technology or topology.
+- Research independently operable blind relays as a separate connectivity line.
 - Allow operators to use compatible third-party services or their own infrastructure.
 - Deliver reproducible deployments, tests, technical decisions, and documentation.
 
