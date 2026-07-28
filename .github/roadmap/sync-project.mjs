@@ -159,6 +159,8 @@ function getExistingIssues(repoFull) {
   for (const issue of out || []) {
     const id = extractId(issue.body, issue.title);
     if (id) map.set(id, issue);
+    const roadmapId = extractTitlePrefixKey(issue.title);
+    if (roadmapId) map.set(roadmapId, issue);
   }
   return map;
 }
@@ -419,6 +421,24 @@ function liveAddBlockedBy(blockedIssueNodeId, blockingIssueNodeId, report, label
     report.errors.push(`dependency ${label}: ${err.message}`);
   }
 }
+function liveRemoveSubIssue(parentIssueNodeId, childIssueNodeId, report, label) {
+  try {
+    ghGraphQL(`mutation($issueId:ID!,$subIssueId:ID!){ removeSubIssue(input:{issueId:$issueId,subIssueId:$subIssueId}){ issue { id } } }`,
+      { issueId: parentIssueNodeId, subIssueId: childIssueNodeId });
+    report.subIssuesRemoved.push(label);
+  } catch (err) {
+    report.errors.push(`remove sub-issue ${label}: ${err.message}`);
+  }
+}
+function liveRemoveBlockedBy(blockedIssueNodeId, blockingIssueNodeId, report, label) {
+  try {
+    ghGraphQL(`mutation($issueId:ID!,$blockingIssueId:ID!){ removeBlockedBy(input:{issueId:$issueId,blockingIssueId:$blockingIssueId}){ issue { id } } }`,
+      { issueId: blockedIssueNodeId, blockingIssueId: blockingIssueNodeId });
+    report.dependenciesRemoved.push(label);
+  } catch (err) {
+    report.errors.push(`remove dependency ${label}: ${err.message}`);
+  }
+}
 const SINGLE_SELECT_FIELD_MAP = [
   ['status', 'Status'],
   ['roadmap', 'Roadmap'],
@@ -530,6 +550,10 @@ function main() {
   const existingLabels = getExistingLabels(repoFull);
   const existingFields = getProjectFields(manifest._meta.project_owner, manifest._meta.project_number);
   const existingIssuesById = getExistingIssues(repoFull);
+  for (const item of allManifestItems(manifest)) {
+    const issueByRoadmapId = existingIssuesById.get(item.roadmap_id);
+    if (issueByRoadmapId) existingIssuesById.set(item.id, issueByRoadmapId);
+  }
   const existingProjectItems = getExistingProjectItems(manifest._meta.project_owner, manifest._meta.project_number);
 
   const fieldsPlan = planFields(manifest, existingFields);
@@ -545,7 +569,8 @@ function main() {
   console.log('\nStarting LIVE execution...\n');
   const report = {
     labelsCreated: [], fieldsCreated: [], fieldsRenamed: [], fieldsRedefined: [], fieldsReused: [], fieldsUnchanged: [],
-    issuesCreated: [], issuesUpdated: [], projectItemsAdded: [], fieldValuesSet: [], subIssuesLinked: [], dependenciesLinked: [],
+    issuesCreated: [], issuesUpdated: [], projectItemsAdded: [], fieldValuesSet: [],
+    subIssuesLinked: [], subIssuesRemoved: [], dependenciesLinked: [], dependenciesRemoved: [],
     issuesClosed: [], projectRenamed: false,
     errors: [],
   };
@@ -568,7 +593,9 @@ function main() {
     console.log(`Project items added: ${report.projectItemsAdded.length}`);
     console.log(`Item field values set: ${report.fieldValuesSet.length}`);
     console.log(`Sub-issue relationships created/verified: ${report.subIssuesLinked.length}`);
+    console.log(`Obsolete sub-issue relationships removed: ${report.subIssuesRemoved.length}`);
     console.log(`Native dependencies created/verified: ${report.dependenciesLinked.length}`);
+    console.log(`Obsolete native dependencies removed: ${report.dependenciesRemoved.length}`);
     console.log(`Project renamed/described: ${report.projectRenamed}`);
     console.log(`Issues closed: ${report.issuesClosed.length}`);
     console.log(`Errors / limitations: ${report.errors.length}`);
@@ -650,11 +677,46 @@ function main() {
     }
     console.log(`Item field values done (${report.fieldValuesSet.length} set).`);
 
-    // Read the real relationship graph once, so already-linked pairs (from
-    // a previous run) are verified/counted but not re-submitted as
-    // mutations -- this migration changes no relationship, only identity
-    // and presentation, so nothing here should need to move.
+    // Reconcile native relationships among managed roadmap Issues. This
+    // removes obsolete managed edges before adding missing desired edges,
+    // while leaving relationships to unmanaged Issues untouched.
     const existingRel = getExistingRelationshipSets(manifest._meta.repo_owner, manifest._meta.repo_name);
+    const managedByNumber = new Map(
+      [...resultByIssueId.entries()].map(([id, issue]) => [issue.number, { id, issue }]),
+    );
+    const desiredSubIssuePairs = new Set(manifest.parent_relationships.map((rel) => {
+      const parent = resultByIssueId.get(rel.parent);
+      const child = resultByIssueId.get(rel.child);
+      return parent && child ? `${parent.number}->${child.number}` : null;
+    }).filter(Boolean));
+    const desiredBlockedByPairs = new Set(manifest.dependencies.map((dep) => {
+      const blocking = resultByIssueId.get(dep.blocking);
+      const blocked = resultByIssueId.get(dep.blocked);
+      return blocking && blocked ? `${blocking.number}->${blocked.number}` : null;
+    }).filter(Boolean));
+
+    for (const pair of existingRel.subIssuePairs) {
+      const [parentNumber, childNumber] = pair.split('->').map(Number);
+      if (!managedByNumber.has(parentNumber) || !managedByNumber.has(childNumber) || desiredSubIssuePairs.has(pair)) continue;
+      liveRemoveSubIssue(
+        getIssueNodeId(repoFull, parentNumber),
+        getIssueNodeId(repoFull, childNumber),
+        report,
+        `${managedByNumber.get(parentNumber).id}->${managedByNumber.get(childNumber).id}`,
+      );
+      existingRel.subIssuePairs.delete(pair);
+    }
+    for (const pair of existingRel.blockedByPairs) {
+      const [blockingNumber, blockedNumber] = pair.split('->').map(Number);
+      if (!managedByNumber.has(blockingNumber) || !managedByNumber.has(blockedNumber) || desiredBlockedByPairs.has(pair)) continue;
+      liveRemoveBlockedBy(
+        getIssueNodeId(repoFull, blockedNumber),
+        getIssueNodeId(repoFull, blockingNumber),
+        report,
+        `${managedByNumber.get(blockingNumber).id} blocks ${managedByNumber.get(blockedNumber).id}`,
+      );
+      existingRel.blockedByPairs.delete(pair);
+    }
 
     for (const rel of manifest.parent_relationships) {
       const parent = resultByIssueId.get(rel.parent);

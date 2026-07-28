@@ -711,11 +711,11 @@ epics:
     roadmap_id: E06
     epic_sequence: 6
     chronological_order: 66
-    title: '[E06] Public access without a mandatory Cloudflare dependency'
+    title: '[E06] Provider-independent connectivity and an operable relay'
     status: Ready
     roadmap: Open Source & Self-Hosting
     type: Epic
-    area: Infrastructure
+    area: Relays
     phase: Open Source Scope
     open_source_milestone: H4
     priority_level: Critical
@@ -733,6 +733,10 @@ epics:
       - H4-06
       - H4-07
       - H4-08
+      - H4-09
+      - H4-10
+      - H4-11
+      - H4-12
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: EPIC-H4 -->
@@ -745,7 +749,7 @@ epics:
 
       ## Objective
 
-      Allow the same Sentirella build to use Sentirella-operated or independently operated public-access infrastructure without requiring Cloudflare.
+      Provide configurable public connectivity and a relay that can be deployed, operated and maintained independently of a mandatory infrastructure provider.
 
       ## Scope
 
@@ -799,11 +803,11 @@ epics:
     roadmap_id: E07
     epic_sequence: 7
     chronological_order: 75
-    title: '[E07] Direct connectivity and community-operated relay infrastructure'
+    title: '[E07] Blind relay and end-to-end protection'
     status: Needs definition
     roadmap: Open Source & Self-Hosting
     type: Epic
-    area: Connectivity
+    area: Security
     phase: Open Source Scope
     open_source_milestone: H5
     priority_level: Critical
@@ -824,6 +828,9 @@ epics:
       - H5-09
       - H5-10
       - H5-11
+      - H5-12
+      - H5-13
+      - H5-14
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: EPIC-H5 -->
@@ -836,7 +843,7 @@ epics:
 
       ## Objective
 
-      Attempt direct device connections first and use independently operable relays when direct connectivity is unavailable, without requiring Sentirella to carry all relay traffic.
+      Define and validate end-to-end confidentiality, integrity, authenticity and metadata-protection requirements so untrusted relay infrastructure cannot interpret protected content or alter it undetectably.
 
       ## Scope
 
@@ -848,17 +855,17 @@ epics:
 
       ## Planned work
 
-      - [ ] `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - [ ] `H5-02` — Prototype direct device-to-device connectivity
-      - [ ] `H5-03` — Prototype a secure relay fallback route
-      - [ ] `H5-04` — Define the relay interface and behaviour
-      - [ ] `H5-05` — Create a self-hostable relay package
-      - [ ] `H5-06` — Design a relay pool and directory
-      - [ ] `H5-07` — Select an available relay automatically
-      - [ ] `H5-08` — Allow selection of connectivity infrastructure
-      - [ ] `H5-09` — Implement relay abuse controls
-      - [ ] `H5-10` — Validate that relays cannot read or undetectably alter content
-      - [ ] `H5-11` — Create a connectivity and relay test suite
+      - [ ] `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - [ ] `H6-02` — Prototype direct device-to-device connectivity
+      - [ ] `H4-09` — Prototype a secure relay fallback route
+      - [ ] `H4-10` — Define the relay interface and behaviour
+      - [ ] `H4-11` — Create a self-hostable relay package
+      - [ ] `H6-03` — Design a relay pool and directory
+      - [ ] `H6-04` — Select an available relay automatically
+      - [ ] `H6-05` — Allow selection of connectivity infrastructure
+      - [ ] `H4-12` — Implement relay abuse controls
+      - [ ] `H5-14` — Validate that relays cannot read or undetectably alter content
+      - [ ] `H6-06` — Create a connectivity and relay test suite
 
       ## Acceptance criteria
 
@@ -894,11 +901,11 @@ epics:
     roadmap_id: E08
     epic_sequence: 8
     chronological_order: 87
-    title: '[E08] Standards-based cryptography and security validation'
+    title: '[E08] Distributed direct connectivity'
     status: Needs definition
     roadmap: Shared
     type: Epic
-    area: Security
+    area: Connectivity
     phase: Open Source Scope
     open_source_milestone: H6
     priority_level: Critical
@@ -915,13 +922,6 @@ epics:
       - H6-04
       - H6-05
       - H6-06
-      - H6-07
-      - H6-08
-      - H6-09
-      - H6-10
-      - H6-11
-      - H6-12
-      - H6-13
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: EPIC-H6 -->
@@ -934,7 +934,7 @@ epics:
 
       ## Objective
 
-      Adopt maintained, publicly reviewed cryptographic standards and libraries, implement the approved security model and provide reproducible security tests.
+      Research and validate direct browser-to-owner connectivity with automatic fallback to compatible private, shared or community-operated relay infrastructure.
 
       ## Scope
 
@@ -946,19 +946,19 @@ epics:
 
       ## Planned work
 
-      - [ ] `H6-01` — Create the Sentirella threat model
-      - [ ] `H6-02` — Define security and privacy requirements
-      - [ ] `H6-03` — Evaluate maintained cryptographic standards and libraries
-      - [ ] `H6-04` — Create comparative cryptographic prototypes
-      - [ ] `H6-05` — Document the cryptographic selection
-      - [ ] `H6-06` — Design the key lifecycle
-      - [ ] `H6-07` — Manage participant addition and revocation
-      - [ ] `H6-08` — Manage lost, replaced and revoked devices
-      - [ ] `H6-09` — Protect transfer confidentiality and integrity
-      - [ ] `H6-10` — Analyse metadata exposure
-      - [ ] `H6-11` — Create an automated security test suite
-      - [ ] `H6-12` — Prepare the project for an external security audit
-      - [ ] `H6-13` — Publish a security policy and vulnerability-reporting process
+      - [ ] `H5-01` — Create the Sentirella threat model
+      - [ ] `H5-02` — Define security and privacy requirements
+      - [ ] `H5-03` — Evaluate maintained cryptographic standards and libraries
+      - [ ] `H5-04` — Create comparative cryptographic prototypes
+      - [ ] `H5-05` — Document the cryptographic selection
+      - [ ] `H5-06` — Design the key lifecycle
+      - [ ] `H5-07` — Manage participant addition and revocation
+      - [ ] `H5-08` — Manage lost, replaced and revoked devices
+      - [ ] `H5-09` — Protect transfer confidentiality and integrity
+      - [ ] `H5-10` — Analyse metadata exposure
+      - [ ] `H5-11` — Create an automated security test suite
+      - [ ] `H5-12` — Prepare the project for an external security audit
+      - [ ] `H5-13` — Publish a security policy and vulnerability-reporting process
 
       ## Acceptance criteria
 
@@ -4592,7 +4592,7 @@ issues:
     hard_dependencies: []
     related_work:
       - H4-04
-      - H5-08
+      - H6-05
       - PR7-08
     body: |
       <!-- sentirella-roadmap-key: H1-03 -->
@@ -4648,7 +4648,7 @@ issues:
       ## Related work
 
       - `H4-04` — Support multiple publication topologies
-      - `H5-08` — Allow selection of connectivity infrastructure
+      - `H6-05` — Allow selection of connectivity infrastructure
       - `PR7-08` — Document infrastructure profiles
 
       ## Tests
@@ -4667,18 +4667,18 @@ issues:
     roadmap_id: T039
     sequence: 39
     chronological_order: 42
-    title: '[T039] Provide an autonomous start-up path without external providers'
+    title: '[T039] Research autonomous bootstrap and first-account provisioning'
     parent_epic: EPIC-H1
-    status: Backlog
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Research
     area: Core
     phase: Open Source Scope
     open_source_milestone: H1
     priority_level: Critical
     risk: null
     labels:
-      - type:feature
+      - type:research
       - open-source
       - provider-neutral
       - self-hosting
@@ -4696,11 +4696,11 @@ issues:
 
       ## Context
 
-      The current Sentirella prototype does not yet satisfy the result described in this Issue. This work belongs to the parent Epic listed in the roadmap manifest.
+      A reproducible independent installation needs a documented bootstrap and initial account-provisioning path that does not require mandatory external identity, email or connectivity providers. The appropriate trust and administration model must be evaluated before implementation is approved.
 
       ## Objective
 
-      Allow a clean Sentirella installation to start and create a local account without Google, email or Cloudflare.
+      Evaluate and validate reproducible approaches for autonomous installation bootstrap and initial account provisioning without mandatory external providers.
 
       ## Scope
 
@@ -4712,21 +4712,22 @@ issues:
 
       ## Planned work
 
-      - [ ] Implement the approved provider-neutral configuration from H1-02.
-      - [ ] Implement the selected self-hosted deployment profile from H1-03.
-      - [ ] Allow local account creation with no email dependency.
-      - [ ] Start the required local and server components without provider credentials.
-      - [ ] Expose clear health and configuration status.
-      - [ ] Document the minimum autonomous installation path.
+      - [ ] Define bootstrap assets, trust boundaries and operator responsibilities.
+      - [ ] Compare viable first-account provisioning and recovery policies.
+      - [ ] Evaluate security, usability, deployment and maintenance trade-offs.
+      - [ ] Define how optional identity, email and connectivity adapters participate without becoming mandatory.
+      - [ ] Prototype the minimum approved autonomous path in an isolated environment.
+      - [ ] Record rejected alternatives, limitations and residual risks.
+      - [ ] Publish reproducible validation and administration guidance.
 
       ## Acceptance criteria
 
-      - [ ] A clean installation starts without Google credentials.
-      - [ ] A clean installation starts without SMTP or an email provider.
-      - [ ] A clean installation starts without Cloudflare configuration.
-      - [ ] A local account can be created and authenticated.
-      - [ ] The basic folder-sharing flow works in the documented autonomous topology.
-      - [ ] The installation procedure is reproducible by a third party.
+      - [ ] The evaluated alternatives and selection criteria are documented.
+      - [ ] The approved path requires no mandatory Google, email-provider or Cloudflare credentials.
+      - [ ] Initial trust, administration and recovery responsibilities are explicit.
+      - [ ] A minimal prototype is validated in an isolated installation.
+      - [ ] The result does not expose sensitive bootstrap material or internal operational details.
+      - [ ] A third party can reproduce the documented validation.
 
       ## Dependencies
 
@@ -4869,7 +4870,7 @@ issues:
 
       ## Objective
 
-      Provide a reversible path from the current provider-coupled installation to the new configurable architecture.
+      Coordinate a reversible migration of installation configuration and operational state into the new configurable architecture without duplicating identity and access-data migration.
 
       ## Scope
 
@@ -4881,22 +4882,22 @@ issues:
 
       ## Planned work
 
-      - [ ] Inventory existing account, permission and configuration data that must be retained.
-      - [ ] Define the migration order.
+      - [ ] Inventory installation configuration, infrastructure state and operational data that must be retained.
+      - [ ] Define the migration order and compatibility boundaries.
       - [ ] Create pre-migration backup instructions.
-      - [ ] Migrate accounts without changing stable account identity.
-      - [ ] Migrate folder memberships, roles and permissions.
-      - [ ] Migrate installation configuration into the new format.
-      - [ ] Define rollback conditions and procedure.
-      - [ ] Test migration on a copy of current data.
+      - [ ] Migrate installation configuration into the approved format.
+      - [ ] Coordinate identity and access-data migration through H2-09 without duplicating its implementation scope.
+      - [ ] Define rollback conditions and procedures.
+      - [ ] Test the coordinated migration on copied non-production data.
 
       ## Acceptance criteria
 
-      - [ ] The migration preserves accounts, folder relationships, roles and permissions.
-      - [ ] The migration does not require users to recreate shared folders.
+      - [ ] Configuration and operational-state transformations are documented and reproducible.
+      - [ ] Identity, account and access-data transformation is delegated to H2-09.
+      - [ ] The migration order defines the hand-off to identity and access migration.
       - [ ] A backup and rollback procedure is documented and tested.
       - [ ] A migration report lists transformed data and unresolved incompatibilities.
-      - [ ] No production migration is performed by this roadmap setup task.
+      - [ ] No production migration is performed by this roadmap task.
 
       ## Dependencies
 
@@ -6024,6 +6025,7 @@ issues:
       - self-hosting
     hard_dependencies:
       - H3-01
+      - H3-04
     related_work:
       - H3-03
       - H3-04
@@ -6067,11 +6069,12 @@ issues:
       - [ ] Invalid host, port or security combinations are rejected with actionable errors.
       - [ ] The saved configuration is used by the provider-neutral email interface.
       - [ ] Email can still be disabled without completing these fields.
-      - [ ] Sensitive values are handled according to H3-04.
+      - [ ] Sensitive values use the protection model approved in H3-04.
 
       ## Dependencies
 
       - `H3-01` — Create a provider-neutral email abstraction
+      - `H3-04` — Define and validate the credential-protection model
 
       ## Related work
 
@@ -6133,7 +6136,7 @@ issues:
 
       ## Out of scope
 
-      Any change that is not explicitly required by this item's Objective, Planned work, or Acceptance criteria.
+      DNS operation, reverse-proxy deployment, certificate issuance and transport publication are handled by H4-03. This Issue only defines the canonical application URL used to generate trusted links.
 
       ## Planned work
 
@@ -6177,26 +6180,26 @@ issues:
     roadmap_id: T056
     sequence: 56
     chronological_order: 61
-    title: '[T056] Store email credentials securely'
+    title: '[T056] Define and validate the credential-protection model'
     parent_epic: EPIC-H3
-    status: Backlog
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Security
+    type: Decision
     area: Email
     phase: Open Source Scope
     open_source_milestone: H3
     priority_level: Critical
     risk: null
     labels:
-      - type:security
+      - type:decision
       - open-source
       - area:email
       - security-critical
     hard_dependencies:
       - H1-02
-      - H3-02
+      - H3-01
     related_work:
-      - H6-11
+      - H5-11
     body: |
       <!-- sentirella-roadmap-key: H3-04 -->
       **Roadmap ID:** `T056`  
@@ -6204,11 +6207,11 @@ issues:
 
       ## Context
 
-      The current Sentirella prototype does not yet satisfy the result described in this Issue. This work belongs to the parent Epic listed in the roadmap manifest.
+      Administrative credentials require an implementation-neutral protection model before provider configuration is implemented. The public task defines security properties and validation evidence without publishing secret locations, formats or operational values.
 
       ## Objective
 
-      Protect SMTP and optional provider credentials throughout storage, administration, logging and runtime use.
+      Define and validate the security properties required for storing, administering, rotating, backing up and using optional provider credentials.
 
       ## Scope
 
@@ -6220,30 +6223,31 @@ issues:
 
       ## Planned work
 
-      - [ ] Define the supported secret-storage mechanism.
-      - [ ] Prevent credentials from being returned in full by APIs.
-      - [ ] Mask credentials in the administration interface.
-      - [ ] Prevent credentials from appearing in logs and error messages.
-      - [ ] Support credential replacement and rotation.
-      - [ ] Define backup and migration handling for secrets.
-      - [ ] Add tests for secret redaction.
+      - [ ] Define credential assets, trust boundaries and threat assumptions.
+      - [ ] Compare supported protection approaches against deployment profiles.
+      - [ ] Define API, interface, logging and error-redaction requirements.
+      - [ ] Define replacement, rotation, backup and migration requirements.
+      - [ ] Prototype the approved model with non-production credentials.
+      - [ ] Define reproducible validation tests.
+      - [ ] Document limitations and operator responsibilities without publishing sensitive operational details.
 
       ## Acceptance criteria
 
-      - [ ] Stored credentials are protected according to the approved secret model.
-      - [ ] APIs never return complete stored credentials.
-      - [ ] The interface displays only masked values.
-      - [ ] Logs and errors contain no credential values.
-      - [ ] Credentials can be replaced without recreating the installation.
+      - [ ] The protection properties and evaluated alternatives are documented.
+      - [ ] APIs, interfaces, logs and errors cannot expose complete credentials.
+      - [ ] Replacement, rotation, backup and migration requirements are covered.
+      - [ ] The approved model is validated with non-production credentials.
+      - [ ] H3-02 implements configuration according to the approved model.
+      - [ ] No secret location, concrete credential value or bypass procedure is published.
 
       ## Dependencies
 
       - `H1-02` — Externalise configuration and secrets
-      - `H3-02` — Add administrative SMTP configuration
+      - `H3-01` — Create a provider-neutral email abstraction
 
       ## Related work
 
-      - `H6-11` — Create an automated security test suite
+      - `H5-11` — Create an automated security test suite
 
       ## Tests
 
@@ -6815,7 +6819,7 @@ issues:
 
       ## Out of scope
 
-      Any change that is not explicitly required by this item's Objective, Planned work, or Acceptance criteria.
+      Application-level canonical URL semantics and trusted-link generation are handled by H3-03. This Issue covers operational domain, proxy, TLS and publication concerns.
 
       ## Planned work
 
@@ -6859,18 +6863,18 @@ issues:
     roadmap_id: T064
     sequence: 64
     chronological_order: 70
-    title: '[T064] Support multiple publication topologies'
+    title: '[T064] Evaluate provider-independent publication topologies'
     parent_epic: EPIC-H4
-    status: Backlog
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Research
     area: Infrastructure
     phase: Open Source Scope
     open_source_milestone: H4
     priority_level: Critical
     risk: null
     labels:
-      - type:feature
+      - type:research
       - open-source
       - area:infrastructure
       - provider-neutral
@@ -6892,7 +6896,7 @@ issues:
 
       ## Objective
 
-      Allow Sentirella to be published through several administrator-selected, provider-neutral topologies.
+      Evaluate provider-independent publication topologies and validate at least one reproducible topology without committing the project to support every evaluated alternative.
 
       ## Scope
 
@@ -6904,21 +6908,20 @@ issues:
 
       ## Planned work
 
-      - [ ] Support and document a reverse-proxy topology.
-      - [ ] Support and document an administrator-selected tunnel topology.
-      - [ ] Support and document a private gateway topology.
-      - [ ] Support and document an organisation-operated infrastructure topology.
-      - [ ] Support and document a Sentirella-operated infrastructure topology.
-      - [ ] Define health checks for each topology.
-      - [ ] Test at least one fully independent topology.
+      - [ ] Define comparison criteria for independently operable publication paths.
+      - [ ] Evaluate representative reverse-proxy, tunnel and private-gateway approaches.
+      - [ ] Compare deployment, trust, maintenance, recovery and security boundaries.
+      - [ ] Select at least one topology for reproducible end-to-end validation.
+      - [ ] Document unsupported, deferred and optional alternatives.
+      - [ ] Publish the comparison, recommendation and validation evidence.
 
       ## Acceptance criteria
 
-      - [ ] Each required topology has documented components and trust boundaries.
-      - [ ] At least one non-Cloudflare topology passes end-to-end validation.
-      - [ ] The application code does not require a specific provider.
-      - [ ] Administrators can select the applicable topology through configuration.
-      - [ ] Unsupported combinations fail with a clear error.
+      - [ ] Relevant publication alternatives are compared using documented criteria.
+      - [ ] At least one provider-independent topology is validated end to end.
+      - [ ] Security boundaries, operational responsibilities and limitations are documented.
+      - [ ] Unsupported or deferred alternatives are identified explicitly.
+      - [ ] Follow-up implementation work references the approved result.
 
       ## Dependencies
 
@@ -7143,7 +7146,7 @@ issues:
       - H4-06
     related_work:
       - PR3-02
-      - H5-09
+      - H4-12
     body: |
       <!-- sentirella-roadmap-key: H4-07 -->
       **Roadmap ID:** `T067`  
@@ -7189,7 +7192,7 @@ issues:
       ## Related work
 
       - `PR3-02` — Detect anomalous real-time channel patterns
-      - `H5-09` — Implement relay abuse controls
+      - `H4-12` — Implement relay abuse controls
 
       ## Tests
 
@@ -7292,19 +7295,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-01
-    internal_key: H5-01
+  - id: H6-01
+    internal_key: H6-01
     roadmap_id: T069
     sequence: 69
     chronological_order: 76
     title: '[T069] Define direct-connectivity and secure-retransmission requirements'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H6
     status: Needs definition
     roadmap: Open Source & Self-Hosting
     type: Research
     area: Connectivity
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
@@ -7315,12 +7318,12 @@ issues:
       - security-critical
     hard_dependencies: []
     related_work:
-      - H6-01
-      - H6-02
+      - H5-01
+      - H5-02
     body: |
-      <!-- sentirella-roadmap-key: H5-01 -->
+      <!-- sentirella-roadmap-key: H6-01 -->
       **Roadmap ID:** `T069`  
-      **Internal key:** `H5-01`
+      **Internal key:** `H6-01`
 
       ## Context
 
@@ -7357,7 +7360,7 @@ issues:
       - [ ] Metadata, privacy and security constraints are documented.
       - [ ] The report compares viable maintained approaches.
       - [ ] No production implementation is approved until the report is accepted.
-      - [ ] H5-02, H5-03, H5-04 and H5-11 reference the result.
+      - [ ] H6-02, H4-09, H4-10 and H6-06 reference the result.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -7372,8 +7375,8 @@ issues:
 
       ## Related work
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Tests
 
@@ -7386,19 +7389,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H5-02
-    internal_key: H5-02
+  - id: H6-02
+    internal_key: H6-02
     roadmap_id: T070
     sequence: 70
     chronological_order: 77
     title: '[T070] Prototype direct device-to-device connectivity'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H6
     status: Blocked
     roadmap: Open Source & Self-Hosting
     type: Technical task
     area: Connectivity
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
@@ -7407,14 +7410,14 @@ issues:
       - area:connectivity
       - security-critical
     hard_dependencies:
-      - H5-01
       - H6-01
-      - H6-02
+      - H5-01
+      - H5-02
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H5-02 -->
+      <!-- sentirella-roadmap-key: H6-02 -->
       **Roadmap ID:** `T070`  
-      **Internal key:** `H5-02`
+      **Internal key:** `H6-02`
 
       ## Context
 
@@ -7422,7 +7425,7 @@ issues:
 
       ## Objective
 
-      Create a controlled prototype that attempts a direct connection between authorised Sentirella devices using the approach selected by H5-01.
+      Create a controlled prototype that attempts a direct connection between authorised Sentirella devices using the approach selected by H6-01.
 
       ## Scope
 
@@ -7452,9 +7455,9 @@ issues:
 
       ## Dependencies
 
-      - `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
@@ -7471,19 +7474,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-03
-    internal_key: H5-03
+  - id: H4-09
+    internal_key: H4-09
     roadmap_id: T071
     sequence: 71
     chronological_order: 78
     title: '[T071] Prototype a secure relay fallback route'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H4
     status: Blocked
     roadmap: Open Source & Self-Hosting
     type: Technical task
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
@@ -7493,15 +7496,15 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H5-01
       - H6-01
-      - H6-02
+      - H5-01
+      - H5-02
     related_work:
-      - H5-10
+      - H5-14
     body: |
-      <!-- sentirella-roadmap-key: H5-03 -->
+      <!-- sentirella-roadmap-key: H4-09 -->
       **Roadmap ID:** `T071`  
-      **Internal key:** `H5-03`
+      **Internal key:** `H4-09`
 
       ## Context
 
@@ -7521,7 +7524,7 @@ issues:
 
       ## Planned work
 
-      - [ ] Implement relay fallback according to H5-01.
+      - [ ] Implement relay fallback according to H6-01.
       - [ ] Authenticate clients and relay access according to the prototype design.
       - [ ] Carry an opaque test payload through the relay.
       - [ ] Report relay selection, connection and failure states.
@@ -7538,13 +7541,13 @@ issues:
 
       ## Dependencies
 
-      - `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
-      - `H5-10` — Validate that relays cannot read or undetectably alter content
+      - `H5-14` — Validate that relays cannot read or undetectably alter content
 
       ## Tests
 
@@ -7557,19 +7560,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-04
-    internal_key: H5-04
+  - id: H4-10
+    internal_key: H4-10
     roadmap_id: T072
     sequence: 72
     chronological_order: 79
     title: '[T072] Define the relay interface and behaviour'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H4
     status: Needs definition
     roadmap: Open Source & Self-Hosting
     type: Decision
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
@@ -7579,13 +7582,13 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H5-01
-      - H6-02
+      - H6-01
+      - H5-02
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H5-04 -->
+      <!-- sentirella-roadmap-key: H4-10 -->
       **Roadmap ID:** `T072`  
-      **Internal key:** `H5-04`
+      **Internal key:** `H4-10`
 
       ## Context
 
@@ -7620,7 +7623,7 @@ issues:
       - [ ] The specification covers registration, authentication, capacity, limits, health, disconnection, privacy, integrity and compatibility.
       - [ ] The specification does not require a relay to understand file contents.
       - [ ] The specification permits independent relay implementations.
-      - [ ] H5-05, H5-06, H5-07 and H5-09 reference the approved specification.
+      - [ ] H4-11, H6-03, H6-04 and H4-12 reference the approved specification.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -7631,8 +7634,8 @@ issues:
 
       ## Dependencies
 
-      - `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H6-02` — Define security and privacy requirements
+      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
@@ -7649,19 +7652,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H5-05
-    internal_key: H5-05
+  - id: H4-11
+    internal_key: H4-11
     roadmap_id: T073
     sequence: 73
     chronological_order: 80
     title: '[T073] Create a self-hostable relay package'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H4
     status: Backlog
     roadmap: Open Source & Self-Hosting
     type: Feature
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
@@ -7671,15 +7674,15 @@ issues:
       - community-infrastructure
       - self-hosting
     hard_dependencies:
-      - H5-03
-      - H5-04
+      - H4-09
+      - H4-10
       - H1-02
     related_work:
       - PR7-06
     body: |
-      <!-- sentirella-roadmap-key: H5-05 -->
+      <!-- sentirella-roadmap-key: H4-11 -->
       **Roadmap ID:** `T073`  
-      **Internal key:** `H5-05`
+      **Internal key:** `H4-11`
 
       ## Context
 
@@ -7719,8 +7722,8 @@ issues:
 
       ## Dependencies
 
-      - `H5-03` — Prototype a secure relay fallback route
-      - `H5-04` — Define the relay interface and behaviour
+      - `H4-09` — Prototype a secure relay fallback route
+      - `H4-10` — Define the relay interface and behaviour
       - `H1-02` — Externalise configuration and secrets
 
       ## Related work
@@ -7738,33 +7741,33 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-06
-    internal_key: H5-06
+  - id: H6-03
+    internal_key: H6-03
     roadmap_id: T074
     sequence: 74
     chronological_order: 81
-    title: '[T074] Design a relay pool and directory'
-    parent_epic: EPIC-H5
+    title: '[T074] Evaluate and prototype relay discovery models'
+    parent_epic: EPIC-H6
     status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Decision
+    type: Research
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
-      - type:decision
+      - type:research
       - open-source
       - area:relays
       - community-infrastructure
     hard_dependencies:
-      - H5-04
+      - H4-10
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H5-06 -->
+      <!-- sentirella-roadmap-key: H6-03 -->
       **Roadmap ID:** `T074`  
-      **Internal key:** `H5-06`
+      **Internal key:** `H6-03`
 
       ## Context
 
@@ -7772,7 +7775,7 @@ issues:
 
       ## Objective
 
-      Define how clients discover and use public, alternative and private relay infrastructure operated by multiple parties.
+      Evaluate and prototype compatible discovery models for private, shared and community-operated relay infrastructure without committing to a mandatory public directory.
 
       ## Scope
 
@@ -7784,35 +7787,25 @@ issues:
 
       ## Planned work
 
-      - [ ] Define a default public relay pool.
-      - [ ] Define alternative relay pools.
-      - [ ] Define private relay configuration.
-      - [ ] Define relay registration and removal.
-      - [ ] Define health and availability checks.
-      - [ ] Define operator identity and trust information.
-      - [ ] Define compatibility and version filtering.
-      - [ ] Define how compromised or abusive relays are withdrawn.
-      - [ ] Define privacy-preserving directory metadata.
-      - [ ] Publish a relay pool specification.
+      - [ ] Define discovery requirements for private, shared and public relay use.
+      - [ ] Compare configured lists, operator-provided catalogues and distributed discovery approaches.
+      - [ ] Evaluate trust, privacy, compatibility, availability and withdrawal properties.
+      - [ ] Identify the minimum metadata required for operation.
+      - [ ] Prototype the leading approaches with non-production relays.
+      - [ ] Record deferred capabilities and residual risks.
+      - [ ] Publish an implementation-neutral comparison and recommendation.
 
       ## Acceptance criteria
 
-      - [ ] Public, alternative and private relay models are specified.
-      - [ ] Multiple independent operators are supported.
-      - [ ] Registration, health checking and removal are defined.
-      - [ ] The directory does not require Sentirella to approve every private relay.
-      - [ ] H5-07, H5-08 and PR7-07 reference the specification.
-      - [ ] The decision question is answered in a written decision record or comparison report.
-      - [ ] The evaluated alternatives are listed.
-      - [ ] The evaluation criteria and constraints are documented.
-      - [ ] Security, privacy, operational, and compatibility implications are documented where applicable.
-      - [ ] The selected direction, rejected alternatives, limitations, and remaining risks are recorded.
-      - [ ] Every dependent Issue is updated to reference the result.
-      - [ ] No production implementation is treated as approved before this record is accepted.
+      - [ ] Multiple discovery models are evaluated against documented criteria.
+      - [ ] Private relay operation does not depend on a mandatory public directory.
+      - [ ] Required metadata and residual exposure are documented.
+      - [ ] At least one candidate is prototyped with reproducible evidence.
+      - [ ] No production discovery model is treated as selected before the decision record is accepted.
 
       ## Dependencies
 
-      - `H5-04` — Define the relay interface and behaviour
+      - `H4-10` — Define the relay interface and behaviour
 
       ## Related work
 
@@ -7829,19 +7822,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H5-07
-    internal_key: H5-07
+  - id: H6-04
+    internal_key: H6-04
     roadmap_id: T075
     sequence: 75
     chronological_order: 82
-    title: '[T075] Select an available relay automatically'
-    parent_epic: EPIC-H5
-    status: Backlog
+    title: '[T075] Define and validate a relay-selection policy'
+    parent_epic: EPIC-H6
+    status: Needs definition
     roadmap: Open Source & Self-Hosting
-    type: Feature
+    type: Decision
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
@@ -7850,15 +7843,15 @@ issues:
       - area:relays
       - community-infrastructure
     hard_dependencies:
-      - H5-06
-      - H5-05
+      - H6-03
+      - H4-11
     related_work:
-      - H5-08
+      - H6-05
       - PR2-06
     body: |
-      <!-- sentirella-roadmap-key: H5-07 -->
+      <!-- sentirella-roadmap-key: H6-04 -->
       **Roadmap ID:** `T075`  
-      **Internal key:** `H5-07`
+      **Internal key:** `H6-04`
 
       ## Context
 
@@ -7866,7 +7859,7 @@ issues:
 
       ## Objective
 
-      Allow a client to select a compatible relay automatically when direct connectivity fails and no specific private relay is required.
+      Define and validate an implementation-neutral policy for choosing a compatible relay when direct connectivity is unavailable.
 
       ## Scope
 
@@ -7878,30 +7871,31 @@ issues:
 
       ## Planned work
 
-      - [ ] Query the configured relay pool or directory.
-      - [ ] Filter incompatible or unhealthy relays.
-      - [ ] Consider capacity and saturation information.
-      - [ ] Consider latency when available without exposing sensitive location data.
-      - [ ] Respect installation and user policy.
-      - [ ] Retry selection after relay failure within documented limits.
-      - [ ] Record selection diagnostics without payload contents.
+      - [ ] Define mandatory compatibility and availability inputs.
+      - [ ] Evaluate capacity, latency, privacy and operator-policy trade-offs.
+      - [ ] Define bounded retry and failure behaviour.
+      - [ ] Define how private-relay and installation policies override defaults.
+      - [ ] Prototype the policy against representative relay candidates.
+      - [ ] Document diagnostics that avoid payload and sensitive-location disclosure.
+      - [ ] Record rejected strategies, limitations and residual risks.
 
       ## Acceptance criteria
 
-      - [ ] The client ignores unhealthy and incompatible relays.
-      - [ ] A compatible available relay can be selected without manual user choice.
-      - [ ] A configured private relay policy is respected.
-      - [ ] Selection retry does not loop without bound.
-      - [ ] The selection process does not expose file contents.
+      - [ ] Selection criteria and policy precedence are documented.
+      - [ ] Unhealthy and incompatible candidates are excluded.
+      - [ ] Retry and failure behaviour is bounded.
+      - [ ] Private and installation-specific policies are respected.
+      - [ ] A representative prototype validates the policy.
+      - [ ] Production implementation remains follow-up work until the decision is accepted.
 
       ## Dependencies
 
-      - `H5-06` — Design a relay pool and directory
-      - `H5-05` — Create a self-hostable relay package
+      - `H6-03` — Design a relay pool and directory
+      - `H4-11` — Create a self-hostable relay package
 
       ## Related work
 
-      - `H5-08` — Allow selection of connectivity infrastructure
+      - `H6-05` — Allow selection of connectivity infrastructure
       - `PR2-06` — Handle route changes between direct connection and relay
 
       ## Tests
@@ -7915,19 +7909,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-08
-    internal_key: H5-08
+  - id: H6-05
+    internal_key: H6-05
     roadmap_id: T076
     sequence: 76
     chronological_order: 83
     title: '[T076] Allow selection of connectivity infrastructure'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H6
     status: Backlog
     roadmap: Open Source & Self-Hosting
     type: Feature
     area: Configuration
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
@@ -7937,13 +7931,13 @@ issues:
       - self-hosting
     hard_dependencies:
       - H1-03
-      - H5-06
+      - H6-03
     related_work:
       - PR7-08
     body: |
-      <!-- sentirella-roadmap-key: H5-08 -->
+      <!-- sentirella-roadmap-key: H6-05 -->
       **Roadmap ID:** `T076`  
-      **Internal key:** `H5-08`
+      **Internal key:** `H6-05`
 
       ## Context
 
@@ -7983,7 +7977,7 @@ issues:
       ## Dependencies
 
       - `H1-03` — Define supported deployment profiles
-      - `H5-06` — Design a relay pool and directory
+      - `H6-03` — Design a relay pool and directory
 
       ## Related work
 
@@ -8000,19 +7994,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-09
-    internal_key: H5-09
+  - id: H4-12
+    internal_key: H4-12
     roadmap_id: T077
     sequence: 77
     chronological_order: 84
     title: '[T077] Implement relay abuse controls'
-    parent_epic: EPIC-H5
+    parent_epic: EPIC-H4
     status: Backlog
     roadmap: Open Source & Self-Hosting
     type: Security
     area: Relays
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H4
     priority_level: Critical
     risk: High
     labels:
@@ -8022,15 +8016,15 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H5-04
-      - H5-05
+      - H4-10
+      - H4-11
     related_work:
       - H4-07
-      - H6-11
+      - H5-11
     body: |
-      <!-- sentirella-roadmap-key: H5-09 -->
+      <!-- sentirella-roadmap-key: H4-12 -->
       **Roadmap ID:** `T077`  
-      **Internal key:** `H5-09`
+      **Internal key:** `H4-12`
 
       ## Context
 
@@ -8070,13 +8064,13 @@ issues:
 
       ## Dependencies
 
-      - `H5-04` — Define the relay interface and behaviour
-      - `H5-05` — Create a self-hostable relay package
+      - `H4-10` — Define the relay interface and behaviour
+      - `H4-11` — Create a self-hostable relay package
 
       ## Related work
 
       - `H4-07` — Detect abuse and apply temporary blocking
-      - `H6-11` — Create an automated security test suite
+      - `H5-11` — Create an automated security test suite
 
       ## Tests
 
@@ -8089,8 +8083,8 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-10
-    internal_key: H5-10
+  - id: H5-14
+    internal_key: H5-14
     roadmap_id: T078
     sequence: 78
     chronological_order: 85
@@ -8112,14 +8106,14 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H5-03
-      - H6-09
+      - H4-09
+      - H5-09
     related_work:
-      - H6-10
+      - H5-10
     body: |
-      <!-- sentirella-roadmap-key: H5-10 -->
+      <!-- sentirella-roadmap-key: H5-14 -->
       **Roadmap ID:** `T078`  
-      **Internal key:** `H5-10`
+      **Internal key:** `H5-14`
 
       ## Context
 
@@ -8157,12 +8151,12 @@ issues:
 
       ## Dependencies
 
-      - `H5-03` — Prototype a secure relay fallback route
-      - `H6-09` — Protect transfer confidentiality and integrity
+      - `H4-09` — Prototype a secure relay fallback route
+      - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
 
-      - `H6-10` — Analyse metadata exposure
+      - `H5-10` — Analyse metadata exposure
 
       ## Tests
 
@@ -8175,19 +8169,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H5-11
-    internal_key: H5-11
+  - id: H6-06
+    internal_key: H6-06
     roadmap_id: T079
     sequence: 79
     chronological_order: 86
-    title: '[T079] Create a connectivity and relay test suite'
-    parent_epic: EPIC-H5
+    title: '[T079] Define a minimum connectivity validation matrix'
+    parent_epic: EPIC-H6
     status: Backlog
     roadmap: Open Source & Self-Hosting
     type: Test
     area: Connectivity
     phase: Open Source Scope
-    open_source_milestone: H5
+    open_source_milestone: H6
     priority_level: Critical
     risk: High
     labels:
@@ -8197,19 +8191,19 @@ issues:
       - community-infrastructure
       - security-critical
     hard_dependencies:
-      - H5-02
-      - H5-03
-      - H5-05
-      - H5-07
-      - H5-08
+      - H6-02
+      - H4-09
+      - H4-11
+      - H6-04
+      - H6-05
+      - H4-12
       - H5-09
-      - H6-09
     related_work:
       - PR2-06
     body: |
-      <!-- sentirella-roadmap-key: H5-11 -->
+      <!-- sentirella-roadmap-key: H6-06 -->
       **Roadmap ID:** `T079`  
-      **Internal key:** `H5-11`
+      **Internal key:** `H6-06`
 
       ## Context
 
@@ -8217,7 +8211,7 @@ issues:
 
       ## Objective
 
-      Create a reproducible test suite covering direct connectivity, relay fallback, relay selection and failure recovery.
+      Define and execute a reproducible minimum validation matrix for direct connectivity, relay fallback and route recovery, with additional scenarios selected from documented risks.
 
       ## Scope
 
@@ -8229,36 +8223,33 @@ issues:
 
       ## Planned work
 
-      - [ ] Test a network where direct connection succeeds.
-      - [ ] Test a network where direct connection cannot be established.
-      - [ ] Test an unavailable relay.
-      - [ ] Test a saturated relay.
-      - [ ] Test a network change.
-      - [ ] Test interruption and reconnection.
-      - [ ] Test a private relay.
-      - [ ] Test an alternative relay pool.
-      - [ ] Test multiple candidate relays.
-      - [ ] Test large files.
+      - [ ] Define the mandatory minimum network and failure scenarios.
+      - [ ] Map additional scenarios to the approved connectivity risks.
+      - [ ] Cover direct success, direct failure and relay fallback.
+      - [ ] Cover relay unavailability, interruption and route recovery.
+      - [ ] Include at least one independently operated relay configuration.
+      - [ ] Validate representative transfer sizes and integrity.
       - [ ] Record whether each scenario is automated, simulated or manual.
+      - [ ] Document deferred scenarios and the reason for deferral.
 
       ## Acceptance criteria
 
-      - [ ] Every listed scenario has a reproducible test procedure.
-      - [ ] Direct success and relay fallback are distinguishable.
-      - [ ] Relay failure does not silently report success.
-      - [ ] Large-file tests verify integrity.
-      - [ ] Results identify the environment and selected route.
-      - [ ] The suite can be executed without using private production credentials.
+      - [ ] The mandatory minimum matrix is documented and reproducible.
+      - [ ] Direct success, fallback and relay failure are distinguishable.
+      - [ ] Transfer integrity is validated for representative sizes.
+      - [ ] Additional scenarios are selected from documented risks rather than an unlimited test promise.
+      - [ ] Results identify the environment and selected route without production credentials.
+      - [ ] Deferred scenarios and residual risks are explicit.
 
       ## Dependencies
 
-      - `H5-02` — Prototype direct device-to-device connectivity
-      - `H5-03` — Prototype a secure relay fallback route
-      - `H5-05` — Create a self-hostable relay package
-      - `H5-07` — Select an available relay automatically
-      - `H5-08` — Allow selection of connectivity infrastructure
-      - `H5-09` — Implement relay abuse controls
-      - `H6-09` — Protect transfer confidentiality and integrity
+      - `H6-02` — Prototype direct device-to-device connectivity
+      - `H4-09` — Prototype a secure relay fallback route
+      - `H4-11` — Create a self-hostable relay package
+      - `H6-04` — Select an available relay automatically
+      - `H6-05` — Allow selection of connectivity infrastructure
+      - `H4-12` — Implement relay abuse controls
+      - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
 
@@ -8275,19 +8266,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-01
-    internal_key: H6-01
+  - id: H5-01
+    internal_key: H5-01
     roadmap_id: T080
     sequence: 80
     chronological_order: 88
     title: '[T080] Create the Sentirella threat model'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Ready
     roadmap: Shared
     type: Security
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8298,13 +8289,13 @@ issues:
       - security-critical
     hard_dependencies: []
     related_work:
-      - H5-01
-      - H5-10
+      - H6-01
+      - H5-14
       - PR8-02
     body: |
-      <!-- sentirella-roadmap-key: H6-01 -->
+      <!-- sentirella-roadmap-key: H5-01 -->
       **Roadmap ID:** `T080`  
-      **Internal key:** `H6-01`
+      **Internal key:** `H5-01`
 
       ## Context
 
@@ -8351,8 +8342,8 @@ issues:
 
       ## Related work
 
-      - `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H5-10` — Validate that relays cannot read or undetectably alter content
+      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H5-14` — Validate that relays cannot read or undetectably alter content
       - `PR8-02` — Prepare architecture, threat-model and test material for audit
 
       ## Tests
@@ -8366,19 +8357,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-02
-    internal_key: H6-02
+  - id: H5-02
+    internal_key: H5-02
     roadmap_id: T081
     sequence: 81
     chronological_order: 89
     title: '[T081] Define security and privacy requirements'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Ready
     roadmap: Shared
     type: Decision
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8388,12 +8379,12 @@ issues:
       - area:security
       - security-critical
     hard_dependencies:
-      - H6-01
+      - H5-01
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-02 -->
+      <!-- sentirella-roadmap-key: H5-02 -->
       **Roadmap ID:** `T081`  
-      **Internal key:** `H6-02`
+      **Internal key:** `H5-02`
 
       ## Context
 
@@ -8429,7 +8420,7 @@ issues:
       - [ ] Content and metadata are treated separately.
       - [ ] Relay, coordination server, administrator and participant trust assumptions are explicit.
       - [ ] Revocation and recovery requirements are documented.
-      - [ ] H5-04, H6-03, H6-06, H6-09 and H6-11 reference the requirements.
+      - [ ] H4-10, H5-03, H5-06, H5-09 and H5-11 reference the requirements.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -8440,7 +8431,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Create the Sentirella threat model
+      - `H5-01` — Create the Sentirella threat model
 
       ## Related work
 
@@ -8457,19 +8448,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-03
-    internal_key: H6-03
+  - id: H5-03
+    internal_key: H5-03
     roadmap_id: T082
     sequence: 82
     chronological_order: 90
     title: '[T082] Evaluate maintained cryptographic standards and libraries'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Needs definition
     roadmap: Shared
     type: Research
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8479,13 +8470,13 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-01
-      - H6-02
+      - H5-01
+      - H5-02
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-03 -->
+      <!-- sentirella-roadmap-key: H5-03 -->
       **Roadmap ID:** `T082`  
-      **Internal key:** `H6-03`
+      **Internal key:** `H5-03`
 
       ## Context
 
@@ -8524,7 +8515,7 @@ issues:
       - [ ] Key lifecycle and participant-management implications are compared.
       - [ ] The report identifies limitations and unresolved risks.
       - [ ] No custom cryptographic algorithm or protocol is proposed.
-      - [ ] H6-04 references the approved candidate set.
+      - [ ] H5-04 references the approved candidate set.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -8535,8 +8526,8 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
@@ -8553,19 +8544,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-04
-    internal_key: H6-04
+  - id: H5-04
+    internal_key: H5-04
     roadmap_id: T083
     sequence: 83
     chronological_order: 91
     title: '[T083] Create comparative cryptographic prototypes'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Blocked
     roadmap: Shared
     type: Research
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8575,12 +8566,12 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-03
+      - H5-03
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-04 -->
+      <!-- sentirella-roadmap-key: H5-04 -->
       **Roadmap ID:** `T083`  
-      **Internal key:** `H6-04`
+      **Internal key:** `H5-04`
 
       ## Context
 
@@ -8600,7 +8591,7 @@ issues:
 
       ## Planned work
 
-      - [ ] Implement only the comparison scenarios approved by H6-03.
+      - [ ] Implement only the comparison scenarios approved by H5-03.
       - [ ] Encrypt and decrypt representative small files.
       - [ ] Encrypt and decrypt representative large files.
       - [ ] Test interrupted processing where supported.
@@ -8615,7 +8606,7 @@ issues:
       - [ ] Measurements use documented environments and file sizes.
       - [ ] Failures and unsupported scenarios are recorded.
       - [ ] No prototype is presented as production-ready.
-      - [ ] The results are sufficient for H6-05 to make a documented selection.
+      - [ ] The results are sufficient for H5-05 to make a documented selection.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -8626,7 +8617,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-03` — Evaluate maintained cryptographic standards and libraries
+      - `H5-03` — Evaluate maintained cryptographic standards and libraries
 
       ## Related work
 
@@ -8643,19 +8634,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-05
-    internal_key: H6-05
+  - id: H5-05
+    internal_key: H5-05
     roadmap_id: T084
     sequence: 84
     chronological_order: 92
     title: '[T084] Document the cryptographic selection'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Blocked
     roadmap: Shared
     type: Decision
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8665,12 +8656,12 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-04
+      - H5-04
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-05 -->
+      <!-- sentirella-roadmap-key: H5-05 -->
       **Roadmap ID:** `T084`  
-      **Internal key:** `H6-05`
+      **Internal key:** `H5-05`
 
       ## Context
 
@@ -8690,7 +8681,7 @@ issues:
 
       ## Planned work
 
-      - [ ] Review H6-03 and H6-04 evidence.
+      - [ ] Review H5-03 and H5-04 evidence.
       - [ ] Select the approved approach.
       - [ ] Document security properties.
       - [ ] Document maintenance and licensing considerations.
@@ -8707,7 +8698,7 @@ issues:
       - [ ] Rejected alternatives and reasons are recorded.
       - [ ] Known limitations and residual risks are explicit.
       - [ ] The decision does not introduce custom cryptography.
-      - [ ] H6-06, H6-07, H6-08 and H6-09 reference the decision.
+      - [ ] H5-06, H5-07, H5-08 and H5-09 reference the decision.
       - [ ] The decision question is answered in a written decision record or comparison report.
       - [ ] The evaluated alternatives are listed.
       - [ ] The evaluation criteria and constraints are documented.
@@ -8718,7 +8709,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-04` — Create comparative cryptographic prototypes
+      - `H5-04` — Create comparative cryptographic prototypes
 
       ## Related work
 
@@ -8735,19 +8726,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-06
-    internal_key: H6-06
+  - id: H5-06
+    internal_key: H5-06
     roadmap_id: T085
     sequence: 85
     chronological_order: 93
-    title: '[T085] Design the key lifecycle'
-    parent_epic: EPIC-H6
+    title: '[T085] Define and validate key-lifecycle requirements'
+    parent_epic: EPIC-H5
     status: Needs definition
     roadmap: Shared
     type: Decision
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8757,12 +8748,12 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-05
+      - H5-05
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-06 -->
+      <!-- sentirella-roadmap-key: H5-06 -->
       **Roadmap ID:** `T085`  
-      **Internal key:** `H6-06`
+      **Internal key:** `H5-06`
 
       ## Context
 
@@ -8770,7 +8761,7 @@ issues:
 
       ## Objective
 
-      Define the complete lifecycle of cryptographic keys for accounts, devices, folders and transfers using the selected standards.
+      Define and validate implementation-neutral lifecycle requirements for cryptographic keys using the selected standards, without fixing an architecture before the evaluation is accepted.
 
       ## Scope
 
@@ -8782,36 +8773,26 @@ issues:
 
       ## Planned work
 
-      - [ ] Define key generation.
-      - [ ] Define local key storage.
-      - [ ] Define key exchange.
-      - [ ] Define key rotation.
-      - [ ] Define participant access changes.
-      - [ ] Define device replacement.
-      - [ ] Define recovery or explicit non-recoverability.
-      - [ ] Define revocation.
-      - [ ] Define secure deletion expectations.
-      - [ ] Define backup implications.
-      - [ ] Publish the key-lifecycle specification.
+      - [ ] Define lifecycle properties required by the approved threat model.
+      - [ ] Compare viable responsibility and trust models.
+      - [ ] Cover generation, storage, exchange, rotation, revocation and deletion at a requirements level.
+      - [ ] Evaluate device loss, participant removal, backup and recovery trade-offs.
+      - [ ] Prototype the leading model using non-production material.
+      - [ ] Record non-recoverability where it is an explicit approved property.
+      - [ ] Publish a decision record without exposing operational key material or sensitive implementation details.
 
       ## Acceptance criteria
 
-      - [ ] Generation, storage, exchange, rotation, recovery, revocation and deletion are covered.
-      - [ ] Account, device and folder responsibilities are explicit.
-      - [ ] A relay or coordination server is not given the ability to decrypt file contents.
-      - [ ] Device loss and participant removal are addressed.
-      - [ ] H6-07, H6-08 and H6-09 reference the approved design.
-      - [ ] The decision question is answered in a written decision record or comparison report.
-      - [ ] The evaluated alternatives are listed.
-      - [ ] The evaluation criteria and constraints are documented.
-      - [ ] Security, privacy, operational, and compatibility implications are documented where applicable.
-      - [ ] The selected direction, rejected alternatives, limitations, and remaining risks are recorded.
-      - [ ] Every dependent Issue is updated to reference the result.
-      - [ ] No production implementation is treated as approved before this record is accepted.
+      - [ ] Lifecycle security properties and evaluated alternatives are documented.
+      - [ ] Account, device, participant and folder responsibilities are defined at a trust-model level.
+      - [ ] Relay and coordination infrastructure cannot gain content-decryption capability.
+      - [ ] Loss, revocation, recovery and non-recoverability trade-offs are addressed.
+      - [ ] A representative prototype validates the leading model.
+      - [ ] Follow-up implementation tasks reference the accepted decision.
 
       ## Dependencies
 
-      - `H6-05` — Document the cryptographic selection
+      - `H5-05` — Document the cryptographic selection
 
       ## Related work
 
@@ -8828,19 +8809,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-07
-    internal_key: H6-07
+  - id: H5-07
+    internal_key: H5-07
     roadmap_id: T086
     sequence: 86
     chronological_order: 94
     title: '[T086] Manage participant addition and revocation'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Backlog
     roadmap: Shared
     type: Feature
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8850,15 +8831,15 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-05
-      - H6-06
+      - H5-05
+      - H5-06
       - P0-10
       - P0-11
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-07 -->
+      <!-- sentirella-roadmap-key: H5-07 -->
       **Roadmap ID:** `T086`  
-      **Internal key:** `H6-07`
+      **Internal key:** `H5-07`
 
       ## Context
 
@@ -8882,7 +8863,7 @@ issues:
       - [ ] Prevent access before authorisation completes.
       - [ ] Revoke future access when a participant is removed.
       - [ ] Define access to content transferred before revocation.
-      - [ ] Rotate or redistribute keys when required by H6-06.
+      - [ ] Rotate or redistribute keys when required by H5-06.
       - [ ] Update folder-role and invitation flows.
       - [ ] Add tests for addition, role change and removal.
 
@@ -8896,8 +8877,8 @@ issues:
 
       ## Dependencies
 
-      - `H6-05` — Document the cryptographic selection
-      - `H6-06` — Design the key lifecycle
+      - `H5-05` — Document the cryptographic selection
+      - `H5-06` — Design the key lifecycle
       - `P0-10` — Invite and remove folder participants
       - `P0-11` — Owner, administrator and user folder roles
 
@@ -8916,19 +8897,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-08
-    internal_key: H6-08
+  - id: H5-08
+    internal_key: H5-08
     roadmap_id: T087
     sequence: 87
     chronological_order: 95
     title: '[T087] Manage lost, replaced and revoked devices'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Backlog
     roadmap: Shared
     type: Feature
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -8938,15 +8919,15 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-05
-      - H6-06
+      - H5-05
+      - H5-06
     related_work:
       - PR4-02
       - PR4-07
     body: |
-      <!-- sentirella-roadmap-key: H6-08 -->
+      <!-- sentirella-roadmap-key: H5-08 -->
       **Roadmap ID:** `T087`  
-      **Internal key:** `H6-08`
+      **Internal key:** `H5-08`
 
       ## Context
 
@@ -8978,14 +8959,14 @@ issues:
 
       - [ ] A revoked device cannot create new authorised connections.
       - [ ] Replacement-device enrolment follows the approved account policy.
-      - [ ] Key and folder access changes follow H6-06.
+      - [ ] Key and folder access changes follow H5-06.
       - [ ] Security events are recorded without key material.
       - [ ] The implementation remains compatible with the future multi-device product roadmap.
 
       ## Dependencies
 
-      - `H6-05` — Document the cryptographic selection
-      - `H6-06` — Design the key lifecycle
+      - `H5-05` — Document the cryptographic selection
+      - `H5-06` — Design the key lifecycle
 
       ## Related work
 
@@ -9003,19 +8984,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-09
-    internal_key: H6-09
+  - id: H5-09
+    internal_key: H5-09
     roadmap_id: T088
     sequence: 88
     chronological_order: 96
     title: '[T088] Protect transfer confidentiality and integrity'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Blocked
     roadmap: Shared
     type: Feature
     area: Cryptography
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -9025,15 +9006,15 @@ issues:
       - area:crypto
       - security-critical
     hard_dependencies:
-      - H6-05
-      - H6-06
+      - H5-05
+      - H5-06
     related_work:
-      - H5-10
+      - H5-14
       - PR2-04
     body: |
-      <!-- sentirella-roadmap-key: H6-09 -->
+      <!-- sentirella-roadmap-key: H5-09 -->
       **Roadmap ID:** `T088`  
-      **Internal key:** `H6-09`
+      **Internal key:** `H5-09`
 
       ## Context
 
@@ -9069,16 +9050,16 @@ issues:
       - [ ] Altered, truncated, reordered or replayed protected data is rejected.
       - [ ] Direct and relay routes enforce the same content-security guarantees.
       - [ ] Large-file integrity is verified.
-      - [ ] The implementation uses only the standards and libraries approved in H6-05.
+      - [ ] The implementation uses only the standards and libraries approved in H5-05.
 
       ## Dependencies
 
-      - `H6-05` — Document the cryptographic selection
-      - `H6-06` — Design the key lifecycle
+      - `H5-05` — Document the cryptographic selection
+      - `H5-06` — Design the key lifecycle
 
       ## Related work
 
-      - `H5-10` — Validate that relays cannot read or undetectably alter content
+      - `H5-14` — Validate that relays cannot read or undetectably alter content
       - `PR2-04` — Verify integrity after transfer resumption
 
       ## Tests
@@ -9092,19 +9073,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-10
-    internal_key: H6-10
+  - id: H5-10
+    internal_key: H5-10
     roadmap_id: T089
     sequence: 89
     chronological_order: 97
     title: '[T089] Analyse metadata exposure'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Ready
     roadmap: Shared
     type: Research
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: High
     risk: High
     labels:
@@ -9114,16 +9095,16 @@ issues:
       - area:security
       - security-critical
     hard_dependencies:
-      - H6-01
-      - H6-02
-    related_work:
       - H5-01
-      - H5-06
-      - H5-10
+      - H5-02
+    related_work:
+      - H6-01
+      - H6-03
+      - H5-14
     body: |
-      <!-- sentirella-roadmap-key: H6-10 -->
+      <!-- sentirella-roadmap-key: H5-10 -->
       **Roadmap ID:** `T089`  
-      **Internal key:** `H6-10`
+      **Internal key:** `H5-10`
 
       ## Context
 
@@ -9169,14 +9150,14 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
-      - `H5-01` — Define direct-connectivity and secure-retransmission requirements
-      - `H5-06` — Design a relay pool and directory
-      - `H5-10` — Validate that relays cannot read or undetectably alter content
+      - `H6-01` — Define direct-connectivity and secure-retransmission requirements
+      - `H6-03` — Design a relay pool and directory
+      - `H5-14` — Validate that relays cannot read or undetectably alter content
 
       ## Tests
 
@@ -9189,19 +9170,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the approved decision record or comparison report and show that every dependent Issue has been updated.
-  - id: H6-11
-    internal_key: H6-11
+  - id: H5-11
+    internal_key: H5-11
     roadmap_id: T090
     sequence: 90
     chronological_order: 98
-    title: '[T090] Create an automated security test suite'
-    parent_epic: EPIC-H6
+    title: '[T090] Validate security controls against the threat model'
+    parent_epic: EPIC-H5
     status: Backlog
     roadmap: Shared
     type: Test
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: Critical
     risk: High
     labels:
@@ -9216,15 +9197,15 @@ issues:
       - H3-04
       - H4-06
       - H4-07
+      - H4-12
+      - H5-07
+      - H5-08
       - H5-09
-      - H6-07
-      - H6-08
-      - H6-09
     related_work: []
     body: |
-      <!-- sentirella-roadmap-key: H6-11 -->
+      <!-- sentirella-roadmap-key: H5-11 -->
       **Roadmap ID:** `T090`  
-      **Internal key:** `H6-11`
+      **Internal key:** `H5-11`
 
       ## Context
 
@@ -9232,7 +9213,7 @@ issues:
 
       ## Objective
 
-      Create reproducible automated and documented manual tests for the security requirements and threat scenarios.
+      Define and execute a risk-based, reproducible validation plan for the controls required by the approved threat model and security requirements.
 
       ## Scope
 
@@ -9244,32 +9225,21 @@ issues:
 
       ## Planned work
 
-      - [ ] Test brute-force protections.
-      - [ ] Test account-enumeration resistance.
-      - [ ] Test privilege escalation.
-      - [ ] Test unauthorised folder access.
-      - [ ] Test role manipulation.
-      - [ ] Test reused or expired invitations.
-      - [ ] Test replay attacks.
-      - [ ] Test device impersonation.
-      - [ ] Test file alteration.
-      - [ ] Test malicious relay behaviour.
-      - [ ] Test malicious coordination-server assumptions where technically testable.
-      - [ ] Test credential leakage.
-      - [ ] Test secret redaction.
-      - [ ] Test unsafe SMTP configuration.
-      - [ ] Test saturation and relay abuse.
-      - [ ] Test participant and device revocation.
-      - [ ] Test manipulated update handling.
-      - [ ] Test sensitive-data leakage in logs.
-      - [ ] Document manual tests where automation is not possible.
+      - [ ] Map approved threats and security requirements to validation evidence.
+      - [ ] Define the mandatory automated regression baseline.
+      - [ ] Define manual or environment-specific procedures where automation is not appropriate.
+      - [ ] Prioritise authorisation, confidentiality, integrity, revocation, credential handling and abuse controls.
+      - [ ] Add representative adversarial tests for untrusted coordination and relay infrastructure.
+      - [ ] Record execution environment, evidence and limitations.
+      - [ ] Document deferred tests and residual risk.
 
       ## Acceptance criteria
 
-      - [ ] Every listed category has an automated test or a documented reason and manual procedure.
-      - [ ] Tests are reproducible without production secrets.
+      - [ ] Every mandatory threat-model control maps to automated or documented manual evidence.
+      - [ ] The regression baseline is reproducible without production secrets.
       - [ ] Failures create actionable reports.
-      - [ ] The suite maps tests to H6-02 requirements and H6-01 threats.
+      - [ ] Test scope is risk-based and bounded by the approved threat model.
+      - [ ] Deferred validation and residual risk are explicit.
       - [ ] No passing result is reported without execution evidence.
 
       ## Dependencies
@@ -9279,10 +9249,10 @@ issues:
       - `H3-04` — Store email credentials securely
       - `H4-06` — Apply real-time channel rate limits
       - `H4-07` — Detect abuse and apply temporary blocking
-      - `H5-09` — Implement relay abuse controls
-      - `H6-07` — Manage participant addition and revocation
-      - `H6-08` — Manage lost, replaced and revoked devices
-      - `H6-09` — Protect transfer confidentiality and integrity
+      - `H4-12` — Implement relay abuse controls
+      - `H5-07` — Manage participant addition and revocation
+      - `H5-08` — Manage lost, replaced and revoked devices
+      - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
 
@@ -9299,19 +9269,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-12
-    internal_key: H6-12
+  - id: H5-12
+    internal_key: H5-12
     roadmap_id: T091
     sequence: 91
     chronological_order: 99
     title: '[T091] Prepare the project for an external security audit'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Backlog
     roadmap: Shared
     type: Documentation
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: High
     risk: High
     labels:
@@ -9321,17 +9291,17 @@ issues:
       - area:security
       - security-critical
     hard_dependencies:
-      - H6-01
-      - H6-02
-      - H6-05
-      - H6-09
-      - H6-11
+      - H5-01
+      - H5-02
+      - H5-05
+      - H5-09
+      - H5-11
     related_work:
       - EPIC-PR8
     body: |
-      <!-- sentirella-roadmap-key: H6-12 -->
+      <!-- sentirella-roadmap-key: H5-12 -->
       **Roadmap ID:** `T091`  
-      **Internal key:** `H6-12`
+      **Internal key:** `H5-12`
 
       ## Context
 
@@ -9370,11 +9340,11 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
-      - `H6-05` — Document the cryptographic selection
-      - `H6-09` — Protect transfer confidentiality and integrity
-      - `H6-11` — Create an automated security test suite
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
+      - `H5-05` — Document the cryptographic selection
+      - `H5-09` — Protect transfer confidentiality and integrity
+      - `H5-11` — Create an automated security test suite
 
       ## Related work
 
@@ -9391,19 +9361,19 @@ issues:
       ## Completion evidence
 
       Before closing this Issue, link the implementing Pull Request or commit, relevant test results, and every updated document. Add deployment or runtime evidence when required by the acceptance criteria.
-  - id: H6-13
-    internal_key: H6-13
+  - id: H5-13
+    internal_key: H5-13
     roadmap_id: T092
     sequence: 92
     chronological_order: 100
     title: '[T092] Publish a security policy and vulnerability-reporting process'
-    parent_epic: EPIC-H6
+    parent_epic: EPIC-H5
     status: Backlog
     roadmap: Shared
     type: Documentation
     area: Security
     phase: Open Source Scope
-    open_source_milestone: H6
+    open_source_milestone: H5
     priority_level: High
     risk: Medium
     labels:
@@ -9417,9 +9387,9 @@ issues:
       - PR7-10
       - PR8-06
     body: |
-      <!-- sentirella-roadmap-key: H6-13 -->
+      <!-- sentirella-roadmap-key: H5-13 -->
       **Roadmap ID:** `T092`  
-      **Internal key:** `H6-13`
+      **Internal key:** `H5-13`
 
       ## Context
 
@@ -9835,7 +9805,7 @@ issues:
       - security-critical
     hard_dependencies:
       - PR2-03
-      - H6-09
+      - H5-09
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR2-04 -->
@@ -9874,12 +9844,12 @@ issues:
       - [ ] Altered partial data is detected.
       - [ ] A different source version is not combined with old partial data.
       - [ ] Invalid partial data is not exposed as a completed file.
-      - [ ] The checks remain compatible with H6-09.
+      - [ ] The checks remain compatible with H5-09.
 
       ## Dependencies
 
       - `PR2-03` — Resume interrupted transfers
-      - `H6-09` — Protect transfer confidentiality and integrity
+      - `H5-09` — Protect transfer confidentiality and integrity
 
       ## Related work
 
@@ -10001,14 +9971,14 @@ issues:
       - area:transfers
       - security-critical
     hard_dependencies:
-      - H5-02
-      - H5-03
-      - H5-07
-      - H6-09
+      - H6-02
+      - H4-09
+      - H6-04
+      - H5-09
       - PR2-03
       - PR2-04
     related_work:
-      - H5-11
+      - H6-06
     body: |
       <!-- sentirella-roadmap-key: PR2-06 -->
       **Roadmap ID:** `T099`  
@@ -10050,16 +10020,16 @@ issues:
 
       ## Dependencies
 
-      - `H5-02` — Prototype direct device-to-device connectivity
-      - `H5-03` — Prototype a secure relay fallback route
-      - `H5-07` — Select an available relay automatically
-      - `H6-09` — Protect transfer confidentiality and integrity
+      - `H6-02` — Prototype direct device-to-device connectivity
+      - `H4-09` — Prototype a secure relay fallback route
+      - `H6-04` — Select an available relay automatically
+      - `H5-09` — Protect transfer confidentiality and integrity
       - `PR2-03` — Resume interrupted transfers
       - `PR2-04` — Verify integrity after transfer resumption
 
       ## Related work
 
-      - `H5-11` — Create a connectivity and relay test suite
+      - `H6-06` — Create a connectivity and relay test suite
 
       ## Tests
 
@@ -10177,7 +10147,7 @@ issues:
       - H2-02
     related_work:
       - PR4-02
-      - H6-08
+      - H5-08
     body: |
       <!-- sentirella-roadmap-key: PR4-01 -->
       **Roadmap ID:** `T101`  
@@ -10224,7 +10194,7 @@ issues:
       ## Related work
 
       - `PR4-02` — Identify each device independently
-      - `H6-08` — Manage lost, replaced and revoked devices
+      - `H5-08` — Manage lost, replaced and revoked devices
 
       ## Tests
 
@@ -10259,7 +10229,7 @@ issues:
     hard_dependencies:
       - PR4-01
     related_work:
-      - H6-08
+      - H5-08
     body: |
       <!-- sentirella-roadmap-key: PR4-02 -->
       **Roadmap ID:** `T102`  
@@ -10297,7 +10267,7 @@ issues:
       - [ ] An editable device name does not change identity.
       - [ ] Sessions and security events can reference the device.
       - [ ] The identifier does not expose a secret.
-      - [ ] The design remains compatible with H6-08.
+      - [ ] The design remains compatible with H5-08.
 
       ## Dependencies
 
@@ -10305,7 +10275,7 @@ issues:
 
       ## Related work
 
-      - `H6-08` — Manage lost, replaced and revoked devices
+      - `H5-08` — Manage lost, replaced and revoked devices
 
       ## Tests
 
@@ -10684,7 +10654,7 @@ issues:
       - PR4-01
       - PR4-02
     related_work:
-      - H6-08
+      - H5-08
     body: |
       <!-- sentirella-roadmap-key: PR4-07 -->
       **Roadmap ID:** `T107`  
@@ -10713,7 +10683,7 @@ issues:
       - [ ] Remove the device from available folder sources.
       - [ ] Update transfer selection.
       - [ ] Record the security event.
-      - [ ] Apply key and access changes required by H6-08.
+      - [ ] Apply key and access changes required by H5-08.
       - [ ] Provide clear confirmation and consequence messaging.
 
       ## Acceptance criteria
@@ -10722,7 +10692,7 @@ issues:
       - [ ] Other account devices remain active.
       - [ ] The revoked device is removed from source selection.
       - [ ] Folder ownership and account identity remain intact.
-      - [ ] Key and security consequences match H6-08.
+      - [ ] Key and security consequences match H5-08.
 
       ## Dependencies
 
@@ -10731,7 +10701,7 @@ issues:
 
       ## Related work
 
-      - `H6-08` — Manage lost, replaced and revoked devices
+      - `H5-08` — Manage lost, replaced and revoked devices
 
       ## Tests
 
@@ -11091,8 +11061,8 @@ issues:
       - area:security
       - security-critical
     hard_dependencies:
-      - H6-01
-      - H6-02
+      - H5-01
+      - H5-02
     related_work:
       - PR5-01
       - PR5-02
@@ -11138,8 +11108,8 @@ issues:
 
       ## Dependencies
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
@@ -11592,7 +11562,7 @@ issues:
       - security-critical
     hard_dependencies:
       - PR6-05
-      - H6-02
+      - H5-02
     related_work:
       - P0-26
       - S0-02
@@ -11638,7 +11608,7 @@ issues:
       ## Dependencies
 
       - `PR6-05` — Prepare macOS packaging and signing
-      - `H6-02` — Define security and privacy requirements
+      - `H5-02` — Define security and privacy requirements
 
       ## Related work
 
@@ -12193,8 +12163,8 @@ issues:
       - roadmap:shared
       - area:docs
     hard_dependencies:
-      - H5-05
-      - H5-09
+      - H4-11
+      - H4-12
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR7-06 -->
@@ -12239,8 +12209,8 @@ issues:
 
       ## Dependencies
 
-      - `H5-05` — Create a self-hostable relay package
-      - `H5-09` — Implement relay abuse controls
+      - `H4-11` — Create a self-hostable relay package
+      - `H4-12` — Implement relay abuse controls
 
       ## Related work
 
@@ -12277,9 +12247,9 @@ issues:
       - roadmap:shared
       - area:docs
     hard_dependencies:
-      - H5-06
-      - H5-07
-      - H5-08
+      - H6-03
+      - H6-04
+      - H6-05
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR7-07 -->
@@ -12322,9 +12292,9 @@ issues:
 
       ## Dependencies
 
-      - `H5-06` — Design a relay pool and directory
-      - `H5-07` — Select an available relay automatically
-      - `H5-08` — Allow selection of connectivity infrastructure
+      - `H6-03` — Design a relay pool and directory
+      - `H6-04` — Select an available relay automatically
+      - `H6-05` — Allow selection of connectivity infrastructure
 
       ## Related work
 
@@ -12363,7 +12333,7 @@ issues:
     hard_dependencies:
       - H1-03
       - H4-04
-      - H5-08
+      - H6-05
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR7-08 -->
@@ -12402,14 +12372,14 @@ issues:
       - [ ] All three profiles are documented.
       - [ ] Operator responsibilities and trust boundaries are explicit.
       - [ ] The document does not imply that one provider is mandatory.
-      - [ ] Profile selection matches H1-03 and H5-08.
+      - [ ] Profile selection matches H1-03 and H6-05.
       - [ ] Known limitations are stated.
 
       ## Dependencies
 
       - `H1-03` — Define supported deployment profiles
       - `H4-04` — Support multiple publication topologies
-      - `H5-08` — Allow selection of connectivity infrastructure
+      - `H6-05` — Allow selection of connectivity infrastructure
 
       ## Related work
 
@@ -12533,7 +12503,7 @@ issues:
       - roadmap:shared
       - area:docs
     hard_dependencies:
-      - H6-13
+      - H5-13
     related_work:
       - P0-31
     body: |
@@ -12578,7 +12548,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-13` — Publish a security policy and vulnerability-reporting process
+      - `H5-13` — Publish a security policy and vulnerability-reporting process
 
       ## Related work
 
@@ -12879,7 +12849,7 @@ issues:
       - area:security
       - security-critical
     hard_dependencies:
-      - H6-12
+      - H5-12
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR8-01 -->
@@ -12931,7 +12901,7 @@ issues:
 
       ## Dependencies
 
-      - `H6-12` — Prepare the project for an external security audit
+      - `H5-12` — Prepare the project for an external security audit
 
       ## Related work
 
@@ -12970,12 +12940,12 @@ issues:
       - security-critical
     hard_dependencies:
       - PR8-01
-      - H6-12
+      - H5-12
     related_work:
-      - H6-01
-      - H6-02
-      - H6-05
-      - H6-11
+      - H5-01
+      - H5-02
+      - H5-05
+      - H5-11
     body: |
       <!-- sentirella-roadmap-key: PR8-02 -->
       **Roadmap ID:** `T134`  
@@ -13000,7 +12970,7 @@ issues:
       ## Planned work
 
       - [ ] Collect architecture and data-flow diagrams.
-      - [ ] Collect H6-01 and H6-02.
+      - [ ] Collect H5-01 and H5-02.
       - [ ] Collect cryptographic decision records.
       - [ ] Collect relay and connectivity specifications.
       - [ ] Collect build and deployment instructions.
@@ -13019,14 +12989,14 @@ issues:
       ## Dependencies
 
       - `PR8-01` — Define the scope of the external security audit
-      - `H6-12` — Prepare the project for an external security audit
+      - `H5-12` — Prepare the project for an external security audit
 
       ## Related work
 
-      - `H6-01` — Create the Sentirella threat model
-      - `H6-02` — Define security and privacy requirements
-      - `H6-05` — Document the cryptographic selection
-      - `H6-11` — Create an automated security test suite
+      - `H5-01` — Create the Sentirella threat model
+      - `H5-02` — Define security and privacy requirements
+      - `H5-05` — Document the cryptographic selection
+      - `H5-11` — Create an automated security test suite
 
       ## Tests
 
@@ -13064,8 +13034,8 @@ issues:
       - PR8-02
       - H2-09
       - H2-10
-      - H6-07
-      - H6-08
+      - H5-07
+      - H5-08
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR8-03 -->
@@ -13114,8 +13084,8 @@ issues:
       - `PR8-02` — Prepare architecture, threat-model and test material for audit
       - `H2-09` — Migrate existing accounts to the configurable identity model
       - `H2-10` — Verify two-factor authentication across account modes
-      - `H6-07` — Manage participant addition and revocation
-      - `H6-08` — Manage lost, replaced and revoked devices
+      - `H5-07` — Manage participant addition and revocation
+      - `H5-08` — Manage lost, replaced and revoked devices
 
       ## Related work
 
@@ -13155,11 +13125,11 @@ issues:
     hard_dependencies:
       - PR8-01
       - PR8-02
+      - H5-14
+      - H6-06
+      - H5-09
       - H5-10
       - H5-11
-      - H6-09
-      - H6-10
-      - H6-11
     related_work: []
     body: |
       <!-- sentirella-roadmap-key: PR8-04 -->
@@ -13206,11 +13176,11 @@ issues:
 
       - `PR8-01` — Define the scope of the external security audit
       - `PR8-02` — Prepare architecture, threat-model and test material for audit
-      - `H5-10` — Validate that relays cannot read or undetectably alter content
-      - `H5-11` — Create a connectivity and relay test suite
-      - `H6-09` — Protect transfer confidentiality and integrity
-      - `H6-10` — Analyse metadata exposure
-      - `H6-11` — Create an automated security test suite
+      - `H5-14` — Validate that relays cannot read or undetectably alter content
+      - `H6-06` — Create a connectivity and relay test suite
+      - `H5-09` — Protect transfer confidentiality and integrity
+      - `H5-10` — Analyse metadata exposure
+      - `H5-11` — Create an automated security test suite
 
       ## Related work
 
@@ -13333,7 +13303,7 @@ issues:
     hard_dependencies:
       - PR8-05
     related_work:
-      - H6-13
+      - H5-13
     body: |
       <!-- sentirella-roadmap-key: PR8-06 -->
       **Roadmap ID:** `T138`  
@@ -13379,7 +13349,7 @@ issues:
 
       ## Related work
 
-      - `H6-13` — Publish a security policy and vulnerability-reporting process
+      - `H5-13` — Publish a security policy and vulnerability-reporting process
 
       ## Tests
 
@@ -13542,6 +13512,28 @@ parent_relationships:
     child: H4-07
   - parent: EPIC-H4
     child: H4-08
+  - parent: EPIC-H6
+    child: H6-01
+  - parent: EPIC-H6
+    child: H6-02
+  - parent: EPIC-H4
+    child: H4-09
+  - parent: EPIC-H4
+    child: H4-10
+  - parent: EPIC-H4
+    child: H4-11
+  - parent: EPIC-H6
+    child: H6-03
+  - parent: EPIC-H6
+    child: H6-04
+  - parent: EPIC-H6
+    child: H6-05
+  - parent: EPIC-H4
+    child: H4-12
+  - parent: EPIC-H5
+    child: H5-14
+  - parent: EPIC-H6
+    child: H6-06
   - parent: EPIC-H5
     child: H5-01
   - parent: EPIC-H5
@@ -13564,32 +13556,10 @@ parent_relationships:
     child: H5-10
   - parent: EPIC-H5
     child: H5-11
-  - parent: EPIC-H6
-    child: H6-01
-  - parent: EPIC-H6
-    child: H6-02
-  - parent: EPIC-H6
-    child: H6-03
-  - parent: EPIC-H6
-    child: H6-04
-  - parent: EPIC-H6
-    child: H6-05
-  - parent: EPIC-H6
-    child: H6-06
-  - parent: EPIC-H6
-    child: H6-07
-  - parent: EPIC-H6
-    child: H6-08
-  - parent: EPIC-H6
-    child: H6-09
-  - parent: EPIC-H6
-    child: H6-10
-  - parent: EPIC-H6
-    child: H6-11
-  - parent: EPIC-H6
-    child: H6-12
-  - parent: EPIC-H6
-    child: H6-13
+  - parent: EPIC-H5
+    child: H5-12
+  - parent: EPIC-H5
+    child: H5-13
   - parent: EPIC-PR1
     child: PR1-01
   - parent: EPIC-PR2
@@ -13781,8 +13751,10 @@ dependencies:
     blocked: H3-03
   - blocking: H1-02
     blocked: H3-04
-  - blocking: H3-02
+  - blocking: H3-01
     blocked: H3-04
+  - blocking: H3-04
+    blocked: H3-02
   - blocking: H3-01
     blocked: H3-05
   - blocking: H3-02
@@ -13827,51 +13799,103 @@ dependencies:
     blocked: H4-08
   - blocking: H4-04
     blocked: H4-08
-  - blocking: H5-01
-    blocked: H5-02
   - blocking: H6-01
-    blocked: H5-02
-  - blocking: H6-02
-    blocked: H5-02
+    blocked: H6-02
   - blocking: H5-01
-    blocked: H5-03
+    blocked: H6-02
+  - blocking: H5-02
+    blocked: H6-02
   - blocking: H6-01
-    blocked: H5-03
-  - blocking: H6-02
-    blocked: H5-03
+    blocked: H4-09
   - blocking: H5-01
-    blocked: H5-04
-  - blocking: H6-02
-    blocked: H5-04
-  - blocking: H5-03
-    blocked: H5-05
-  - blocking: H5-04
-    blocked: H5-05
+    blocked: H4-09
+  - blocking: H5-02
+    blocked: H4-09
+  - blocking: H6-01
+    blocked: H4-10
+  - blocking: H5-02
+    blocked: H4-10
+  - blocking: H4-09
+    blocked: H4-11
+  - blocking: H4-10
+    blocked: H4-11
   - blocking: H1-02
-    blocked: H5-05
-  - blocking: H5-04
-    blocked: H5-06
-  - blocking: H5-06
-    blocked: H5-07
-  - blocking: H5-05
-    blocked: H5-07
+    blocked: H4-11
+  - blocking: H4-10
+    blocked: H6-03
+  - blocking: H6-03
+    blocked: H6-04
+  - blocking: H4-11
+    blocked: H6-04
   - blocking: H1-03
+    blocked: H6-05
+  - blocking: H6-03
+    blocked: H6-05
+  - blocking: H4-10
+    blocked: H4-12
+  - blocking: H4-11
+    blocked: H4-12
+  - blocking: H4-09
+    blocked: H5-14
+  - blocking: H5-09
+    blocked: H5-14
+  - blocking: H6-02
+    blocked: H6-06
+  - blocking: H4-09
+    blocked: H6-06
+  - blocking: H4-11
+    blocked: H6-06
+  - blocking: H6-04
+    blocked: H6-06
+  - blocking: H6-05
+    blocked: H6-06
+  - blocking: H4-12
+    blocked: H6-06
+  - blocking: H5-09
+    blocked: H6-06
+  - blocking: H5-01
+    blocked: H5-02
+  - blocking: H5-01
+    blocked: H5-03
+  - blocking: H5-02
+    blocked: H5-03
+  - blocking: H5-03
+    blocked: H5-04
+  - blocking: H5-04
+    blocked: H5-05
+  - blocking: H5-05
+    blocked: H5-06
+  - blocking: H5-05
+    blocked: H5-07
+  - blocking: H5-06
+    blocked: H5-07
+  - blocking: P0-10
+    blocked: H5-07
+  - blocking: P0-11
+    blocked: H5-07
+  - blocking: H5-05
     blocked: H5-08
   - blocking: H5-06
     blocked: H5-08
-  - blocking: H5-04
-    blocked: H5-09
   - blocking: H5-05
     blocked: H5-09
-  - blocking: H5-03
-    blocked: H5-10
-  - blocking: H6-09
+  - blocking: H5-06
+    blocked: H5-09
+  - blocking: H5-01
     blocked: H5-10
   - blocking: H5-02
+    blocked: H5-10
+  - blocking: H2-05
     blocked: H5-11
-  - blocking: H5-03
+  - blocking: H2-07
     blocked: H5-11
-  - blocking: H5-05
+  - blocking: H3-04
+    blocked: H5-11
+  - blocking: H4-06
+    blocked: H5-11
+  - blocking: H4-07
+    blocked: H5-11
+  - blocking: H4-12
     blocked: H5-11
   - blocking: H5-07
     blocked: H5-11
@@ -13879,75 +13903,23 @@ dependencies:
     blocked: H5-11
   - blocking: H5-09
     blocked: H5-11
-  - blocking: H6-09
-    blocked: H5-11
-  - blocking: H6-01
-    blocked: H6-02
-  - blocking: H6-01
-    blocked: H6-03
-  - blocking: H6-02
-    blocked: H6-03
-  - blocking: H6-03
-    blocked: H6-04
-  - blocking: H6-04
-    blocked: H6-05
-  - blocking: H6-05
-    blocked: H6-06
-  - blocking: H6-05
-    blocked: H6-07
-  - blocking: H6-06
-    blocked: H6-07
-  - blocking: P0-10
-    blocked: H6-07
-  - blocking: P0-11
-    blocked: H6-07
-  - blocking: H6-05
-    blocked: H6-08
-  - blocking: H6-06
-    blocked: H6-08
-  - blocking: H6-05
-    blocked: H6-09
-  - blocking: H6-06
-    blocked: H6-09
-  - blocking: H6-01
-    blocked: H6-10
-  - blocking: H6-02
-    blocked: H6-10
-  - blocking: H2-05
-    blocked: H6-11
-  - blocking: H2-07
-    blocked: H6-11
-  - blocking: H3-04
-    blocked: H6-11
-  - blocking: H4-06
-    blocked: H6-11
-  - blocking: H4-07
-    blocked: H6-11
+  - blocking: H5-01
+    blocked: H5-12
+  - blocking: H5-02
+    blocked: H5-12
+  - blocking: H5-05
+    blocked: H5-12
   - blocking: H5-09
-    blocked: H6-11
-  - blocking: H6-07
-    blocked: H6-11
-  - blocking: H6-08
-    blocked: H6-11
-  - blocking: H6-09
-    blocked: H6-11
-  - blocking: H6-01
-    blocked: H6-12
-  - blocking: H6-02
-    blocked: H6-12
-  - blocking: H6-05
-    blocked: H6-12
-  - blocking: H6-09
-    blocked: H6-12
-  - blocking: H6-11
-    blocked: H6-12
+    blocked: H5-12
+  - blocking: H5-11
+    blocked: H5-12
   - blocking: H2-01
     blocked: PR1-01
   - blocking: H2-02
     blocked: PR1-01
   - blocking: PR2-03
     blocked: PR2-04
-  - blocking: H6-09
+  - blocking: H5-09
     blocked: PR2-04
   - blocking: PR2-01
     blocked: PR2-05
@@ -13955,13 +13927,13 @@ dependencies:
     blocked: PR2-05
   - blocking: PR2-04
     blocked: PR2-05
-  - blocking: H5-02
+  - blocking: H6-02
     blocked: PR2-06
-  - blocking: H5-03
+  - blocking: H4-09
     blocked: PR2-06
-  - blocking: H5-07
+  - blocking: H6-04
     blocked: PR2-06
-  - blocking: H6-09
+  - blocking: H5-09
     blocked: PR2-06
   - blocking: PR2-03
     blocked: PR2-06
@@ -13999,9 +13971,9 @@ dependencies:
     blocked: PR5-02
   - blocking: PR5-03
     blocked: PR5-04
-  - blocking: H6-01
+  - blocking: H5-01
     blocked: PR5-05
-  - blocking: H6-02
+  - blocking: H5-02
     blocked: PR5-05
   - blocking: H1-02
     blocked: PR6-01
@@ -14019,7 +13991,7 @@ dependencies:
     blocked: PR6-05
   - blocking: PR6-05
     blocked: PR6-06
-  - blocking: H6-02
+  - blocking: H5-02
     blocked: PR6-06
   - blocking: PR6-01
     blocked: PR6-07
@@ -14063,21 +14035,21 @@ dependencies:
     blocked: PR7-05
   - blocking: H4-08
     blocked: PR7-05
-  - blocking: H5-05
+  - blocking: H4-11
     blocked: PR7-06
-  - blocking: H5-09
+  - blocking: H4-12
     blocked: PR7-06
-  - blocking: H5-06
+  - blocking: H6-03
     blocked: PR7-07
-  - blocking: H5-07
+  - blocking: H6-04
     blocked: PR7-07
-  - blocking: H5-08
+  - blocking: H6-05
     blocked: PR7-07
   - blocking: H1-03
     blocked: PR7-08
   - blocking: H4-04
     blocked: PR7-08
-  - blocking: H5-08
+  - blocking: H6-05
     blocked: PR7-08
   - blocking: H2-02
     blocked: PR7-09
@@ -14085,7 +14057,7 @@ dependencies:
     blocked: PR7-09
   - blocking: H4-06
     blocked: PR7-09
-  - blocking: H6-13
+  - blocking: H5-13
     blocked: PR7-10
   - blocking: PR7-02
     blocked: PR7-11
@@ -14109,11 +14081,11 @@ dependencies:
     blocked: PR7-13
   - blocking: H2-09
     blocked: PR7-13
-  - blocking: H6-12
+  - blocking: H5-12
     blocked: PR8-01
   - blocking: PR8-01
     blocked: PR8-02
-  - blocking: H6-12
+  - blocking: H5-12
     blocked: PR8-02
   - blocking: PR8-01
     blocked: PR8-03
@@ -14123,23 +14095,23 @@ dependencies:
     blocked: PR8-03
   - blocking: H2-10
     blocked: PR8-03
-  - blocking: H6-07
+  - blocking: H5-07
     blocked: PR8-03
-  - blocking: H6-08
+  - blocking: H5-08
     blocked: PR8-03
   - blocking: PR8-01
     blocked: PR8-04
   - blocking: PR8-02
     blocked: PR8-04
+  - blocking: H5-14
+    blocked: PR8-04
+  - blocking: H6-06
+    blocked: PR8-04
+  - blocking: H5-09
+    blocked: PR8-04
   - blocking: H5-10
     blocked: PR8-04
   - blocking: H5-11
-    blocked: PR8-04
-  - blocking: H6-09
-    blocked: PR8-04
-  - blocking: H6-10
-    blocked: PR8-04
-  - blocking: H6-11
     blocked: PR8-04
   - blocking: PR8-03
     blocked: PR8-05

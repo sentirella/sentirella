@@ -52,9 +52,9 @@ Repository labels fall into four groups: `type:*` (nine, matching the `Type` fie
 | **H1** | Open, reproducible and autonomous foundation | Allow a third party to deploy Sentirella without Sentirella-owned secrets, accounts, or mandatory external providers. |
 | **H2** | Configurable identity and registration | Allow Sentirella to operate without Google and let each installation choose how accounts are created, verified, and recovered. |
 | **H3** | Configurable email and domain | Allow each installation to use its own SMTP infrastructure or operate with email completely disabled. |
-| **H4** | Public access without a mandatory Cloudflare dependency | Allow the same Sentirella build to use Sentirella-operated or independently operated public-access infrastructure without requiring Cloudflare. |
-| **H5** | Direct connectivity and community-operated relay infrastructure | Attempt direct device connections first and use independently operable relays when direct connectivity is unavailable, without requiring Sentirella to carry all relay traffic. |
-| **H6** | Standards-based cryptography and security validation | Adopt maintained, publicly reviewed cryptographic standards and libraries, implement the approved security model, and provide reproducible security tests. |
+| **H4** | Provider-independent connectivity and an operable relay | Decouple public access from any mandatory provider, validate an independently operable publication path, and establish the minimum relay capabilities needed for resilient connectivity. |
+| **H5** | Blind relay and end-to-end protection | Define and validate a security model in which relays can transport protected content without reading or undetectably altering it. |
+| **H6** | Distributed direct connectivity | Evaluate and validate direct-first connectivity, automatic fallback, and independently operated relay options without committing prematurely to one implementation. |
 
 
 ## Why provider-dependent capabilities stay recorded separately
@@ -69,17 +69,17 @@ Sentirella must be able to create and use accounts without collecting an email a
 
 Email delivery is built behind a provider-neutral abstraction (`H3-01`) so the current provider is never required by the core. Each installation configures its own SMTP service (`H3-02`), its own domain and public URL (`H3-03`), and stores its credentials securely (`H3-04`). Sentirella must also be able to run with email completely disabled (`H3-08`) — this is validated explicitly, not assumed.
 
-## Public access without a mandatory Cloudflare dependency
+## Provider-independent connectivity and an operable relay
 
-The public access point is represented through provider-neutral configuration (`H4-02`), with support for custom domains and certificates (`H4-03`) and multiple publication topologies — reverse proxy, an administrator-selected tunnel, a private gateway, organisation-operated infrastructure, or Sentirella-operated infrastructure (`H4-04`). A complete deployment without Cloudflare is validated end to end (`H4-08`) before the current deployment is retired. Remote access, perimeter protection, and DDoS protection are kept conceptually separate (`H4-05`): Sentirella does not claim that its own rate limits or a tunnel resolve every attack on their own.
+The public access point is represented through provider-neutral configuration (`H4-02`), with support for custom domains and certificates (`H4-03`). Publication topologies are evaluated before support is committed (`H4-04`), and at least one independently operable path must be validated end to end (`H4-08`). The same milestone defines the minimum operable relay, including session handling, recovery, observability, and abuse boundaries. Remote access, perimeter protection, and DDoS protection remain separate concerns: Sentirella does not claim that application rate limits, a tunnel, or a relay resolve every attack on their own.
 
-## Direct-first connectivity and community-operated relay infrastructure
+## Blind relay and end-to-end protection
 
-Devices always attempt a direct connection first. When that is not possible, an alternative route through independently operable relay infrastructure may be used, without Sentirella having to carry all of that traffic centrally. The relay network may include infrastructure operated by Sentirella, by the community, by another organisation, or fully privately (`H5-06`, `H5-08`); anyone must be able to deploy a compatible relay using the published self-hostable package (`H5-05`); and both public and private relay pools must be supported. This is why public-facing Issue titles and descriptions in this roadmap never name a specific browser real-time communication stack or its connection-discovery and relay-server acronyms — they use implementation-neutral language instead: direct connection, connectivity negotiation, connection coordination, discovery, alternative route, secure retransmission, relay, relay pool, relay directory, community-operated relay infrastructure. No specific connectivity implementation is selected or announced before `H5-01` is completed and approved.
+This milestone begins with an explicit threat model and security requirements. Maintained, publicly reviewed standards and libraries are compared and prototyped before any production choice is approved. The resulting design must protect confidentiality and integrity across relay-assisted transfers, define an auditable key lifecycle, minimise exposed metadata, and validate that a relay can transport protected content without reading or undetectably altering it. Public tasks describe required properties, evidence, and trust boundaries without publishing operational secrets or fixing an architecture before the research is complete.
 
-## Standards-based cryptography, never a custom protocol
+## Distributed direct connectivity
 
-`EPIC-H6` adopts maintained, publicly reviewed cryptographic standards and libraries after evaluating them (`H6-03`) and prototyping the leading candidates (`H6-04`) — no cryptographic algorithm or protocol is designed from scratch, and no selection is committed to before that evaluation is accepted (`H6-05`). Relays must not be able to read or undetectably alter transferred content (`H5-10`, `H6-09`); a relay's technical ability to move encrypted, authenticated bytes is not the same thing as being able to read them.
+Devices should prefer a direct connection where the validated environment permits it and use an alternative route when direct connectivity is unavailable. This milestone evaluates maintained connectivity approaches, defines failure detection and fallback behaviour, prototypes discovery and relay-selection policies, and validates a minimum matrix of supported scenarios. Compatible relay infrastructure may be privately or independently operated, but the roadmap does not promise a universal directory, a fixed selection algorithm, or support for every possible topology before those models have been evaluated.
 
 ## Avoiding duplicate work
 
